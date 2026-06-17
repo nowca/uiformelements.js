@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIFormElements.js example - calculator exported by UICodeConsole.js</title>
+    <link rel="stylesheet" href="../css/themes/system-ui.css">
+    <link rel="stylesheet" href="../css/themes/system-ui-dark.css">
+    <link rel="stylesheet" href="../css/themes/chromium.css">
+    <link rel="stylesheet" href="../css/themes/gimp.css">
+    <link rel="stylesheet" href="../css/themes/windows-classic.css">
+    <link rel="stylesheet" href="../css/themes/deep-blue.css">
+    <link rel="stylesheet" href="../css/themes/terminal.css">
+    <link rel="stylesheet" href="../css/themes/custom.css">
+    <script src="../js/ui-form-elements.production.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        
+        body {
+            padding: 32px;
+        }
+
+        .Tab {
+            width: 660px;
+        }
+
+        label, input, select {
+            display: inline-block;
+        }
+
+         #theme {
+            margin-bottom: 8px;
+        }
+
+        code {
+            font-family: monospace;
+        }
+
+        /* calcultor css */
+
+        #calculator {
+            position: relative;
+            border-radius: 8px;
+            border-top: 2px solid #aaaaaa;
+            border-left: 2px solid #aaaaaa;
+            border-right: 2px solid #666666;
+            border-bottom: 2px solid #666666;
+            margin-top: 18px;
+            transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+        }
+
+        #calculator * {
+            font-family: monospace !important;
+            font-size: 16px;
+        }
+
+        #calculator:hover {
+            box-shadow: -8px 8px 32px 0px #cccccc;
+            transform: rotateX(-15deg) rotateY(0deg) rotateZ(-1deg) translateX(4px) translateY(-4px);
+        }
+
+        /*body.DeepBlue #calculator {
+            background-color: rgba(50, 0, 0, 0.5);;
+        }
+
+        body.DeepBlue #calculator button {
+            background-color: rgba(100, 50, 50, 0.5);;
+        }*/
+
+        body.SystemUIDark #calculator:hover,
+        body.Gimp #calculator:hover,
+        body.DeepBlue #calculator:hover,
+        body.WindowsClassic #calculator:hover,
+        body.Terminal #calculator:hover {
+            box-shadow: -8px 8px 32px 0px #111111;
+        }
+
+        #calc-display {
+            color: #000000;
+            border-radius: 8px;
+            border-top: 4px solid #666666;
+            border-right: 4px solid #222222;
+            border-bottom: 4px solid #777777;
+            border-left: 4px solid #222222;
+            background-color: #CFE3E4;
+            text-align: right;
+            width: 85%;
+            margin: 0 4px 16px 4px;
+            height: 48px;
+            margin-left: 4px;
+            margin-bottom: 8px;
+        }
+
+        #calculator button {
+            font-weight: bold;
+            height: 32px;
+            width: 48px;
+            margin: 4px;
+            border-radius: 8px;
+        }
+
+        #calculator button:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>UIFormElements.js - Legacy-compatible prototyping HTML-Form toolkit.</h1>
+    <div><span id="version"></span>- Tested with Firefox 25 and Chromium 70 (Linux x64)</div>
+    <br>
+
+    <div id="theme">Select theme color: </div>
+    <br>
+
+    <div id="calculator-code-container" style="display: inline-block; vertical-align: top; margin-left: 16px;">
+        <h2>Calculator:</h2>
+        <p>This example uses HTML Code exported by the UICodeConsole-extension in <code>examples-with-code-console.html</code></p>
+        <p>The values are added to the display with <code>calcInput()</code> and calculated by the JavaScript <code>eval()</code> function</p>
+        <br>
+    </div>
+
+    <script>
+        // this node is the root of the generated html form
+        var calculatorRootNode = document.getElementById("calculator-code-container");
+
+        // set the configuration and initialize the html-node with its id
+        UIFormElements.setConfig({
+            userselect: false,
+            theme: "SystemUI"
+        });
+
+        // theme selection
+        document.getElementById("theme").appendChild(
+            UIDropdownList({
+                values: UIFormElements.config.themes,
+                inline: true,
+                onchange: "UIFormElements.changeTheme(this.value)",
+                value: UIFormElements.config.theme
+            }).createHTMLElement()
+        );
+
+        // version
+        document.getElementById("version").textContent = "Version " + UIFormElements.VERSION;
+    </script>
+
+    <!-- procedural creation of calculator-object -->
+    <script src="../js/examples/calculator.js"></script>
+
+    <script>
+        // get and add the html contents to the selected html node
+        calculatorRootNode.appendChild(calculator.createHTMLElement());
+    </script>
+</body>
+</html>

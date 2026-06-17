@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIFormElements.js examples with UICodeConsole.js extension</title>
+    <link rel="stylesheet" href="../css/themes/system-ui.css">
+    <link rel="stylesheet" href="../css/themes/system-ui-dark.css">
+    <link rel="stylesheet" href="../css/themes/chromium.css">
+    <link rel="stylesheet" href="../css/themes/gimp.css">
+    <link rel="stylesheet" href="../css/themes/windows-classic.css">
+    <link rel="stylesheet" href="../css/themes/deep-blue.css">
+    <link rel="stylesheet" href="../css/themes/terminal.css">
+    <link rel="stylesheet" href="../css/themes/custom.css">
+    <script src="../js/ui-code-console.production.min.js"></script>
+    <script src="../js/ui-form-elements.production.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        
+        body {
+            padding: 32px;
+            overflow: hidden;
+        }
+
+        .Tab {
+            width: 660px;
+        }
+
+        label, input, select {
+            display: inline-block;
+        }
+
+        #theme {
+            margin-bottom: 8px;
+        }
+
+        code {
+            font-family: monospace;
+        }
+
+        /* login-form css */
+
+        #login-form {
+            width: 325px;
+        }
+        
+        #login-form * {
+            font-size: 15px;
+            border-width: 2px !important;
+        }
+
+        #login-form legend
+        {
+            font-weight: bold;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #login-form #user-name,
+        #login-form #email-address,
+        #login-form #password {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        #login-form input[type=text],
+        #login-form input[type=password]
+        {
+            padding: 8px !important;
+            width: 260px;
+        }
+
+        #login-form button {
+            font-weight: bold;
+            margin-left: 4px;
+            margin-top: 8px;
+            padding: 8px 20px 8px 20px !important;
+            transition: all 0.25s ease-in-out;
+        }
+
+        #login-form .Group {
+            margin-bottom: 8px;
+        }
+
+        #login-form select {
+            width: 176px;
+        }
+
+        /* calcultor css */
+
+        #calculator {
+            position: relative;
+            border-radius: 8px;
+            border-top: 2px solid #aaaaaa;
+            border-left: 2px solid #aaaaaa;
+            border-right: 2px solid #666666;
+            border-bottom: 2px solid #666666;
+            margin-top: 18px;
+            transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+        }
+
+        #calculator * {
+            font-family: monospace !important;
+            font-size: 16px;
+        }
+
+        #calculator:hover {
+            box-shadow: -8px 8px 32px 0px #cccccc;
+            transform: rotateX(-15deg) rotateY(0deg) rotateZ(-1deg) translateX(4px) translateY(-4px);
+        }
+
+        /*body.DeepBlue #calculator {
+            background-color: rgba(50, 0, 0, 0.5);;
+        }
+
+        body.DeepBlue #calculator button {
+            background-color: rgba(100, 50, 50, 0.5);;
+        }*/
+
+        body.SystemUIDark #calculator:hover,
+        body.Gimp #calculator:hover,
+        body.DeepBlue #calculator:hover,
+        body.WindowsClassic #calculator:hover,
+        body.Terminal #calculator:hover {
+            box-shadow: -8px 8px 32px 0px #111111;
+        }
+
+        #calc-display {
+            color: #000000;
+            border-radius: 8px;
+            border-top: 4px solid #666666;
+            border-right: 4px solid #222222;
+            border-bottom: 4px solid #777777;
+            border-left: 4px solid #222222;
+            background-color: #CFE3E4;
+            text-align: right;
+            width: 85%;
+            margin: 0 4px 16px 4px;
+            height: 48px;
+            margin-left: 4px;
+            margin-bottom: 8px;
+        }
+
+        #calculator button {
+            font-weight: bold;
+            height: 32px;
+            width: 48px;
+            margin: 4px;
+            border-radius: 8px;
+        }
+
+        #calculator button:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>UIFormElements.js - Legacy-compatible prototyping HTML-Form toolkit.</h1>
+    <div><span id="version"></span>- Tested with Firefox 25 and Chromium 70 (Linux x64)</div>
+    <br>
+    <h2>UICodeConsole.js-extension</h2>
+    <p>3 examples (1 declarative HTML + 2 with procedural Javascript) loaded into the UICodeConsole.js-extension with <code>UICodeConsole.add()</code></p>
+    <p>The extension is initiated in <code>UIFormElements.setConfig()</code></p>
+    <br>
+    <div id="theme">Select theme color: </div>
+    <br>
+
+    <div id="declarative-code-container" style="display: inline-block; vertical-align: top;">
+        <h2>With declarative HTML:</h2>
+    </div>
+
+    <div id="procedural-code-container" style="display: inline-block; vertical-align: top; margin-left: 16px;">
+         <h2>With procedural JavaScript instructions:</h2>
+    </div>
+
+    <div id="calculator-code-container" style="display: inline-block; vertical-align: top; margin-left: 16px;">
+         <h2>Calculator:</h2>
+    </div>
+
+    <div class="Layout" id="main-container">
+        <div class="Tab" id="tab-group-1" title="Fieldset Tab Group" style="width: 520px;">
+            <div class="Group" inline=true>
+                <div class="Label" id="label-1" inline=false>First Labeltext</div>
+                <div class="Button" id="button-1">With a Button</div>
+            </div>
+            <div class="Group" inline=true>
+                <div class="Label" id="label-2" inline=false>Second Labeltext</div>
+                <div class="Button" id="button-2">Another Button</div>
+            </div>
+            <div class="Group" inline=true>
+                <div class="Label" id="label-3" inline=false disabled=true>Third Labeltext</div>
+                <div class="Button" id="button-3" disabled=true>Third Button</div>
+            </div>
+        </div>
+        <div class="Tab" id="tab-group-2" title="Next Fieldset Tab Group" style="width: 520px">
+            <div class="Checkbox" id="checkbox-1">First Checkbox</div>
+            <div class="Checkbox" id="checkbox-2">Second Checkbox</div>
+            <div class="Checkbox" id="checkbox-3">Third Checkbox</div>
+            <div class="Checkbox" id="checkbox-4" disabled=true>Last Checkbox</div>
+        </div>
+        <div class="Tab" id="tab-group-3" title="Tab Group with Radio-buttons" style="width: 520px;">
+            <div class="RadioButton" id="radiobutton-1" name="radio-group">First Radio-Button</div>
+            <div class="RadioButton" id="radiobutton-2" name="radio-group">Second Radio-Button</div>
+            <div class="RadioButton" id="radiobutton-4" name="radio-group" disabled="true">Another Radio-Button</div>
+        </div>
+        <div class="Tab" id="tab-group-4" title="Tab Group with sliders" style="width: 520px">
+            <div class="Group">
+                <div class="Label" style="width: 100px;">Percent:</div>
+                <div class="Slider" id="ui-slider-1" min=0, max=100 value=75 step=1 style="width: 220px;" inline=true></div>
+                <div class="Label Value" bind="ui-slider-1" style="float: right;">{value}%</div>
+                <br>
+                <div class="Label" style="width: 100px;">Balance:</div>
+                <div class="Slider" id="ui-slider-2" min=0, max=50 value=19.99 step=0.01 style="width: 220px;" inline=true></div>
+                <div class="Label Value" bind="ui-slider-2" style="float: right;">{value} $</div>
+                <br>
+                <div class="Label" style="width: 100px;">Frequency:</div>
+                <div class="Slider" id="ui-slider-3" min=0, max=44100 value=44100 step=1 style="width: 220px;" inline=true></div>
+                <div class="Label Value" bind="ui-slider-3" style="float: right;">{value} Hz</div>
+            </div>
+        </div>
+        <div class="Tab" id="tab-group-5" title="Tab Group with Dropdown-Fields" style="width: 520px;">
+            <div class="Group">
+                <div class="Label">Dropdown-List:</div>
+                <div class="DropdownList" id="dropdown-1" values="[First entry of list, Second entry of list, The last entry of the Dropdown-list]"></div>
+                <div class="Label">Multiple selection list:</div>
+                <div class="DropdownList" id="dropdown-2" multiple="true" values="[Multiple-list entry 1, Multiple-list entry 2, Multiple-list entry 3]"></div>
+            </div>
+            <div class="Group">
+                <div class="Label">Textarea-field:</div>
+                <div class="TextArea" id="textarea-1" rows="5" cols="30" placeholder="Placeholder text" style="resize: none">Some Text-Content in a TextArea-Field.</div>
+            </div>
+        </div>
+        <div class="Tab" id="tab-group-6" title="Tab Group with Dropdown-Fields" style="width: 520px;">
+            <div class="Group">
+                <div class="Label" style="width: 100px;">Textinput-Field:</div>
+                <div class="TextInput" id="text-input-1" placeholder="Type in something" inline=true></div>
+            </div>
+            <div class="Group">
+                <div class="Label" style="width: 100px;">Value:</div>
+                <div class="Label Value" bind="text-input-1">The text is "{value}"</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // these 3 nodes are the roots of the generated html forms
+        var proceduralRootNode = document.getElementById("procedural-code-container");
+        var declarativeRootNode = document.getElementById("declarative-code-container");
+        var calculatorRootNode = document.getElementById("calculator-code-container");
+
+        // set the configuration and initialize the html-node with its id
+        UIFormElements.setConfig({
+            userselect: false,
+            theme: "SystemUI",
+            extensions: [
+                "UICodeConsole"
+            ]
+        });
+
+        // theme selection
+        document.getElementById("theme").appendChild(
+            UIDropdownList({
+                values: UIFormElements.config.themes,
+                inline: true,
+                onchange: "UIFormElements.changeTheme(this.value)",
+                value: UIFormElements.config.theme
+            }).createHTMLElement()
+        );
+
+        // version
+        document.getElementById("version").textContent = "Version " + UIFormElements.VERSION;
+    </script>
+
+    <!-- initialization of declarative html tree "#main-container" -->
+    <script src="../js/examples/declarative-html.js"></script>
+
+    <!-- procedural creation of uiForm-Object -->
+    <script src="../js/examples/procedural-code.js"></script>
+
+    <!-- procedural creation of calculator-Object -->
+    <script src="../js/examples/calculator.js"></script>
+
+    <script>
+        // get and add the html contents to the selected html nodes
+        proceduralRootNode.appendChild(uiForm.createHTMLElement());
+        calculatorRootNode.appendChild(calculator.createHTMLElement());
+
+        // add stuff to code console
+        UICodeConsole.add(declarativeRootNode);
+        UICodeConsole.add(proceduralRootNode);
+        UICodeConsole.add(calculatorRootNode);
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIFormElements.js example</title>
+    <style>
+        body {
+            padding: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parentRootNode"></div>
+
+    <div class="Layout" id="main-container">
+        <div class="Tab" id="tab-group-1" title="Fieldset Tab Group">
+            <div class="Group" inline=true>
+                <div class="Label" id="label-1" inline=false>Labeltext</div>
+                 <div class="Button" id="button-1">OK</div>
+            </div>
+        </div>
+        <div class="Tab" id="tab-group-2" title="Next Fieldset Tab Group">
+            <div class="Checkbox" id="checkbox-1">First Checkbox</div>
+            <div class="Checkbox" id="checkbox-2">Second Checkbox</div>
+        </div>
+        <div class="Tab" id="tab-group-3" title="Tab Group with Radio-buttons">
+            <div class="RadioButton" id="radiobutton-1" name="radio-group">First Radio-Button</div>
+            <div class="RadioButton" id="radiobutton-2" name="radio-group">Second Radio-Button</div>
+        </div>
+        <div class="Tab" id="tab-group-4" title="Tab Group with Sliders">
+            <div class="Slider" id="ui-slider-1" min=0, max=100 value=75 step=1 inline=true></div>
+            <div class="Label Value" bind="ui-slider-1" style="float: right;">{value}%</div>
+        </div>
+        <div class="Tab" id="tab-group-5" title="Tab Group with Lists">
+            <div class="Label">Simple selection list:</div>
+            <div class="DropdownList" id="dropdown-1" values="[entry-1, entry-2, entry-3]"></div>
+            <div class="Label">Multiple selection list:</div>
+            <div class="DropdownList" id="dropdown-2" multiple="true" values="[entry-1, entry-2, entry-3]"></div>
+            
+        </div>
+        <div class="Tab" id="tab-group-5" title="Tab Group with Textfields">
+            <div class="TextArea" id="textarea-1" rows="5" cols="30" placeholder="Placeholder text" style="resize: none"></div>
+            <div class="TextInput" id="text-input-1" placeholder="Type in something" inline=true></div>
+            <div class="Label Value" bind="text-input-1">Text: {value}</div>
+        </div>
+    </div>
+    <script>
+        UIFormElements.setConfig({
+            userselect: false,
+            theme: "SystemUI"
+        });
+
+        UIFormElements.init(
+            "main-container",
+            document.getElementById("parentRootNode")
+        );
+    </script>
+</body>
+</html>

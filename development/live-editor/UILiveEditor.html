@@ -1,0 +1,1006 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+	<title>UIFormElements.js Live Editor</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/codemirror.css">
+	<script src="js/codemirror.merged.min.js"></script>
+	<script>
+		function $Id(id)
+		{
+			return document.getElementById(id);
+		}
+
+		function $Tag(tag)
+		{
+			return document.getElementsByTagName(tag);
+		}
+	</script>
+	<style>
+		* {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			font-size: 12px;
+		}
+
+		body {
+			background-color: #3C3C3C;
+			color: #474C58 !important;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		select {
+			color: #474C58 !important;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0px 10px;
+			overflow: hidden;
+		}
+
+		li {
+			float: left;
+		}
+
+		li.seperator {
+		    width: 32px;
+		    height: 32px;
+		}
+
+		button {
+			margin: 1px 0 1px 0;
+			height: 30px;
+			color: #474C58;
+			border-radius: 4px;
+		}
+
+		.tool-bar button,
+		.bottom-bar button {
+			height: 30px !important;
+			margin-top: 0 !important;
+		}
+
+		.bar-element button {
+			height: 24px;
+			margin-top: 4px;
+		}
+
+		button:enabled {
+		    background-color: #E0E0E2;
+		    border: 1px solid #E0E0E2;
+		}
+
+		button:hover:enabled {
+		    background-color: #D4D4D6 !important;
+		}
+
+		button:active:enabled {
+		    background-color: #E0E8ED !important;
+		}
+
+		#textareacontainer > ul > *, #top-bar-title,
+		#iframecontainer > ul > * {
+			display: inline-block;
+			font-family: Verdana, Arial, monospace !important;
+			font-size: 12px;
+		}
+
+		#textareacontainer > ul,
+		#iframecontainer > ul {
+			position: relative;
+    		width: 100%;
+		}
+
+		#top-bar-title {
+			height: 32px;
+		    padding: 10px 0 10px 24px !important;
+		    color: #ffffff;
+		    position: absolute;
+		    width: 360px;
+		    font-weight: bold;
+		    font-size: 12px;
+			background-color: #406161;
+			font-weight: bold;	
+		}
+
+		#top-bar .bar-element {
+		    left: 360px;
+		}
+
+		.bar-element {
+			height: 32px;
+		    padding: 0;
+		    color: #ffffff;
+		    position: absolute;
+		}
+
+		.bottom-bar {
+			height: 58px;
+    		padding: 14px 0 0 10px;
+		}
+
+		.tool-bar {
+			color: #cccccc;
+			background-color: #4C4C4C;
+			display: inline-block;
+		    width: 140px !important;
+		    position: absolute !important;
+		    height: calc(100% - 90px);
+		    padding: 14px 10px;
+		    overflow-y: auto;
+    		overflow-x: hidden;
+		}
+
+		.tool-bar li {
+			display: block !important;
+			float: none;
+			margin-bottom: 8px;
+		}
+
+		.tool-bar button {
+			width: 98%;
+		}
+
+		.tool-bar .Checkbox > input {
+			margin: 0 !important;
+		}
+
+		.bottom-bar * {
+    		white-space: nowrap;
+			overflow: hidden !important;
+		}
+
+		#container {
+			margin: 0;
+		    position: absolute;
+		    height: 100%;
+		    width: 100%;
+		    bottom: 0px;
+		    left: 0;
+		    right: 0;
+		}
+
+		#textareacontainer,
+		#dragbar,
+		#iframecontainer {
+			float: left;
+			height: 100%;
+			width: calc(50% - 6px);
+		}
+
+		#dragbar {
+			position: relative;
+			width: 10px;
+			box-shadow: none;
+			cursor: col-resize;
+		}
+
+		#dragbar:hover {
+			background-color: #4D4D4D;
+		}
+
+		#dragbar div {
+			position: absolute;
+		    width: 5px;
+		    height: 64px;
+		    border: 2px dotted #888888;
+		    left: 2px;
+		    bottom: 50%;
+		}
+
+		#filename {
+			border: 0;
+			color: #aaaaaa;
+    		background: #4C4C4C;
+			width: 300px;
+			padding: 7px 4px;
+			text-align: left;
+			height: 30px;
+    		margin: 1px;
+    		padding-left: 12px;
+		}
+
+		#shield {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 4;
+		}
+
+		#framesize span {
+			font-family: Consolas, monospace;
+		}
+
+		#iframe-subcontainer {
+			height: calc(100% - 90px);
+			border: 1px solid #666;
+		}
+
+		#iframeResult {
+			background-color: #ffffff;
+		    border: none;
+		    height: 100%;
+		    width: 100%;
+		}
+
+		#document-title {
+			background-color: #667788 !important;
+			display: inline-block;
+			height: 32px;
+    		background-color: #666;
+    		width: 360px;
+		    font-weight: bold;
+		    line-height: 32px;
+		    padding-left: 32px;
+		}
+
+		#theme {
+			display: inline-block;
+			padding-left: 32px;
+    		background-color: #666;
+    		height: 32px;
+		}
+
+		#theme select {
+			margin-left: 16px;
+			margin-right: 10px;
+			margin-top: 4px;
+			height: 24px !important;
+			border-radius: 4px;
+		}
+
+		[class*="tit-icon-"] {
+			/*font: normal normal normal 18px/1 tit-fontello;*/
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			padding: 8px 10px;
+		}
+
+		.CodeMirror {
+			font-family: monospace !important;
+			font-size: 12px;
+    		margin-left: 140px;
+			line-height: normal;
+			padding: 8px;
+			width: calc(100% - 140px);
+			box-shadow: 0px 0px 10px 4px #cccccc inset;
+			height: calc(100% - 90px);
+		    border: 1px solid #666;
+		}
+
+		.CodeMirror-lines {
+			padding-left: 0.5rem;
+		}
+
+		.CodeMirror-linenumber {
+			left: -1rem !important;
+		}
+
+		.CodeMirror-hscrollbar {
+			left: 40px !important;
+		}
+
+		.right {
+			position: absolute;
+   			right: 0;
+		}
+
+		* {
+		    user-select: none;
+		    -ms-user-select: none;
+		    -moz-user-select: none;
+		    -webkit-user-select: none;
+		}
+
+		.CodeMirror * {
+		    user-select: text !important;
+		    -ms-user-select: text !important;
+		    -moz-user-select: text !important;
+		    -webkit-user-select: text !important;
+		}
+	</style>
+	<!--[if lt IE 8]>
+	<style>
+		#textareacontainer, #iframecontainer {width: 48%;}
+		#container {height: 500px;}
+		#textarea, #iframe {width: 90%;height: 450px;}
+		#textareaCode, #iframeResult {height: 450px;}
+	</style>
+	<![endif]-->
+</head>
+<body>
+<div id="shield"></div>
+
+<div id="container">
+	<div id="textareacontainer">
+		<div id="top-bar-title">UIFormElements.js Live Editor</div>
+		<ul class="bar-element right">
+			<li><button class="right" style="right: 86px;" onclick="UILiveEditor.undo()">Undo</button></li>
+			<li class="seperator"></li>
+			<li><button class="right" style="" onclick="submitTryit(1)">Run &raquo;</button></li>
+		</ul>
+		<ul class="bar-element tool-bar">
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.group, 31, true)'>Group</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.tab, 35, true)'>Tab</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.form, 42, true)'>Form</button></li>
+			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.button, 20)'>Button</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.checkbox, 22)'>Checkbox</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.dropdownlist, 57)'>DropdownList</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.label, 19)'>Label</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.radiobutton, 44)'>RadioButton</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.seperator, 29)'>Seperator</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.slider, 139)'>Slider</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.textarea, 99)'>TextArea</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.textinput, 61)'>TextInput</button></li>
+			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
+			<li><label for="checkbox-live" class="Checkbox"><input type="checkbox" id="checkbox-live" checked><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Live reload</span></label>
+			<li><label for="checkbox-cursor" class="Checkbox"><input type="checkbox" id="checkbox-cursor" checked><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Set the cursor at text-content</span></label>
+			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
+			<li><label for="checkbox-add-id" class="Checkbox"><input type="checkbox" id="checkbox-add-id"><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Add id-attribute</span></label></li>
+			<li><label for="checkbox-add-text" class="Checkbox"><input type="checkbox" id="checkbox-add-id"><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Add text-string</span></label></li>
+			<li><label for="checkbox-no-inline" class="Checkbox"><input type="checkbox" id="checkbox-no-inline"><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Set no inline</span></label></li>
+			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
+			<li><label for="checkbox-slider-label" class="Checkbox"><input type="checkbox" id="checkbox-slider-label" checked><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Slider with label</span>
+			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
+			<li><label for="checkbox-start-empty" class="Checkbox"><input type="checkbox" id="checkbox-start-empty"><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Start editor with empty template</span></label></li>
+		</ul>
+		<textarea autocomplete="on" id="textareaCode" wrap="logical" spellcheck="false"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIFormElements.js example</title>
+    <!-- UIFormElements.js -->
+    <script src="js/ui-form-elements.production.min.js"></script>
+    <!-- UIFormElements.js CSS-Themes: -->
+    <link rel="stylesheet" href="css/ui-form-elements.themes.css">
+    <style>
+        body {
+            padding: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parentRootNode"></div>
+    <div class="Layout" id="main-container">
+        <div class="Tab" id="tab-group-1" title="Fieldset Tab Group">
+            <div class="Group" inline=true>
+                <div class="Label" id="label-1" inline=false>Labeltext</div>
+                 <div class="Button" id="button-1">OK</div>
+            </div>
+        </div>
+        <div class="Tab" id="tab-group-2" title="Next Fieldset Tab Group">
+            <div class="Checkbox" id="checkbox-1">First Checkbox</div>
+            <div class="Checkbox" id="checkbox-2">Second Checkbox</div>
+        </div>
+        <div class="Tab" id="tab-group-3" title="Tab Group with Radio-buttons">
+            <div class="RadioButton" id="radiobutton-1" name="radio-group">First Radio-Button</div>
+            <div class="RadioButton" id="radiobutton-2" name="radio-group">Second Radio-Button</div>
+        </div>
+        <div class="Tab" id="tab-group-4" title="Tab Group with Sliders">
+            <div class="Slider" id="ui-slider-1" min=0, max=100 value=75 step=1 inline=true></div>
+            <div class="Label Value" bind="ui-slider-1" style="float: right;">{value}%</div>
+        </div>
+        <div class="Tab" id="tab-group-5" title="Tab Group with Lists">
+            <div class="Label">Simple selection list:</div>
+            <div class="DropdownList" id="dropdown-1" values="[entry-1, entry-2, entry-3]"></div>
+            <div class="Label">Multiple selection list:</div>
+            <div class="DropdownList" id="dropdown-2" multiple="true" values="[entry-1, entry-2, entry-3]"></div>
+        </div>
+        <div class="Tab" id="tab-group-5" title="Tab Group with Textfields">
+            <div class="TextArea" id="textarea-1" rows="5" cols="30" placeholder="Placeholder text" style="resize: none"></div>
+            <div class="TextInput" id="text-input-1" placeholder="Type in something" inline=true></div>
+            <div class="Label Value" bind="text-input-1">Text: {value}</div>
+        </div>
+    </div>
+    <script>
+        UIFormElements.setConfig({
+            userselect: false,
+            theme: "SystemUI"
+        });
+
+        UIFormElements.init(
+            "main-container",
+            document.getElementById("parentRootNode")
+        );
+    </script>
+</body>
+</html>
+		</textarea>
+		<ul class="bar-element bottom-bar">
+			<li><button onclick="loadFile()">Load HTML-File</button></li>
+			<li class="seperator"></li>
+			<li><input id="filename" value="./example/live-editor-example.html"></input></li>
+			<li class="seperator"></li>
+			<li><button style="margin-right: 10px;" onclick="UILiveEditor.loadEmptyHTMLFile()">Load empty HTML-Template</button></li>
+			<li><button style="margin-right: 10px;" onclick="UILiveEditor.loadFormExamples()">Load example</button></li>
+			<li><button onclick="UILiveEditor.clearAll()">Clear all</button></li>
+		</ul>
+	</div>
+	<div id="dragbar"><div></div></div>
+	<div id="iframecontainer">
+		<ul class="bar-element">
+			<li id="document-title"></li>
+			<li id="theme">Theme: <select id="theme-selection" class="DropdownList" style="display: inline-block; height: 32px;" onchange="UILiveEditor.setTheme(this.value)"><option value="None">None</option><option value="SystemUI" selected>System-UI</option><option value="SystemUIDark">System-UI-Dark</option><option value="Chromium">Chromium</option><option value="Gimp">Gimp</option><option value="WindowsClassic">Windows-Classic</option><option value="DeepBlue">Deep-Blue</option><option value="Terminal">Terminal</option><option value="Custom">Custom</option></select></li>
+			<li class="seperator"></li>
+			<li><button onclick="UILiveEditor.setSize(-0.1)" style="width: 32px; margin-left: 10px;">-</button></li>
+			<li><button onclick="UILiveEditor.setSize(0.1)" style="width: 32px; margin-left: 10px;">+</button></li>
+			<li><button onclick="UILiveEditor.setSize(0)" style="margin-left: 10px;">Reset</button></li>
+		</ul>
+		<div id="iframe-subcontainer">
+			<iframe id="iframeResult"></iframe>
+		</div>
+		<ul class="bar-element bottom-bar">
+			<li><button>Export HTML-File</button></li>
+			<li class="right" style="position: absolute; right: 10px;"><button onclick="UILiveEditor.aboutDialog()">About</button></li>
+		</ul>
+	</div>
+</div>
+<script>
+	var UILiveEditor = {
+		VERSION: "0.6b",
+		document: {
+			title: "<no document title>",
+			zoomLevel: 1
+		},
+		uiElementTemplates: {
+			group: '<div class="Group" inline=true></div>',
+			tab: '<div class="Tab" title="Tab title"></div>',
+			form: '<form class="Form" action="" method="get"></form>',
+			button: '<div class="Button"></div>',
+			checkbox: '<div class="Checkbox"></div>',
+			dropdownlist: '<div class="DropdownList" values="[item-1, item-2, item-3]"></div>',
+			label: '<div class="Label"></div>',
+			radiobutton: '<div class="RadioButton" name="radio-group"></div>',
+			seperator: '<div class="Seperator"></div>',
+			slider: '<div class="Slider" id="ui-slider" min=0, max=100 value=75 step=1 inline=true></div><div class="Label Value" bind="ui-slider">{value}</div>',
+			textarea: '<div class="TextArea" rows="5" cols="30" placeholder="Placeholder text" style="resize: none"></div>',
+			textinput: '<div class="TextInput" placeholder="Type in something"></div>'
+		},
+		htmlTemplates: {
+			empty: {
+				text: '<!DOCTYPE html>\n\
+<html lang="en">\n\
+<head>\n\
+    <meta charset="UTF-8">\n\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n\
+    <title>UIFormElements.js empty document</title>\n\
+    <!-- UIFormElements.js -->\n\
+    <script src="js/ui-form-elements.production.min.js"><\/script>\n\
+    <!-- UIFormElements.js CSS-Themes: -->\n\
+    <link rel="stylesheet" href="css/ui-form-elements.themes.css">\n\
+    <style>\n\
+        body {\n\
+            padding: 32px;\n\
+        }\n\
+    </style>\n\
+</head>\n\
+<body>\n\
+    <div id="parentRootNode"></div>\n\
+    <div class="Layout" id="main-container">\n\
+       \n\
+    </div>\n\
+    <script>\n\
+        UIFormElements.setConfig({\n\
+            userselect: false,\n\
+            theme: "SystemUI"\n\
+        });\n\
+\n\
+        UIFormElements.init(\n\
+            "main-container",\n\
+            document.getElementById("parentRootNode")\n\
+        );\n\
+    <\/script>\n\
+</body>\n\
+</html>',
+				cursorPos: 20
+			},
+			example: {
+				text: '<!DOCTYPE html>\n\
+<html lang="en">\n\
+<head>\n\
+    <meta charset="UTF-8">\n\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n\
+    <title>UIFormElements.js example</title>\n\
+    <!-- UIFormElements.js -->\n\
+    <script src="js/ui-form-elements.production.min.js"><\/script>\n\
+    <!-- UIFormElements.js CSS-Themes: -->\n\
+    <link rel="stylesheet" href="css/ui-form-elements.themes.css">\n\
+    <style>\n\
+        body {\n\
+            padding: 32px;\n\
+        }\n\
+    </style>\n\
+</head>\n\
+<body>\n\
+    <div id="parentRootNode"></div>\n\
+    <div class="Layout" id="main-container">\n\
+        <div class="Tab" id="tab-group-1" title="Fieldset Tab Group">\n\
+            <div class="Group" inline=true>\n\
+                <div class="Label" id="label-1" inline=false>Labeltext</div>\n\
+                 <div class="Button" id="button-1">OK</div>\n\
+            </div>\n\
+        </div>\n\
+        <div class="Tab" id="tab-group-2" title="Next Fieldset Tab Group">\n\
+            <div class="Checkbox" id="checkbox-1">First Checkbox</div>\n\
+            <div class="Checkbox" id="checkbox-2">Second Checkbox</div>\n\
+        </div>\n\
+        <div class="Tab" id="tab-group-3" title="Tab Group with Radio-buttons">\n\
+            <div class="RadioButton" id="radiobutton-1" name="radio-group">First Radio-Button</div>\n\
+            <div class="RadioButton" id="radiobutton-2" name="radio-group">Second Radio-Button</div>\n\
+        </div>\n\
+        <div class="Tab" id="tab-group-4" title="Tab Group with Sliders">\n\
+            <div class="Slider" id="ui-slider-1" min=0, max=100 value=75 step=1 inline=true></div>\n\
+            <div class="Label Value" bind="ui-slider-1" style="float: right;">{value}%</div>\n\
+        </div>\n\
+        <div class="Tab" id="tab-group-5" title="Tab Group with Lists">\n\
+            <div class="Label">Simple selection list:</div>\n\
+            <div class="DropdownList" id="dropdown-1" values="[entry-1, entry-2, entry-3]"></div>\n\
+            <div class="Label">Multiple selection list:</div>\n\
+            <div class="DropdownList" id="dropdown-2" multiple="true" values="[entry-1, entry-2, entry-3]"></div>\n\
+        </div>\n\
+        <div class="Tab" id="tab-group-5" title="Tab Group with Textfields">\n\
+            <div class="TextArea" id="textarea-1" rows="5" cols="30" placeholder="Placeholder text" style="resize: none"></div>\n\
+            <div class="TextInput" id="text-input-1" placeholder="Type in something" inline=true></div>\n\
+            <div class="Label Value" bind="text-input-1">Text: {value}</div>\n\
+        </div>\n\
+    </div>\n\
+    <script>\n\
+        UIFormElements.setConfig({\n\
+            userselect: false,\n\
+            theme: "SystemUI"\n\
+        });\n\
+\n\
+        UIFormElements.init(\n\
+            "main-container",\n\
+            document.getElementById("parentRootNode")\n\
+        );\n\
+    <\/script>\n\
+</body>\n\
+</html>'
+			}
+		},
+		getLocationType: function()
+		{
+		    if (window.location.protocol == 'file:')
+		    {
+		    	return 0;
+		    }
+
+		    if (!window.location.host.replace(/localhost|127\.0\.0\.1/i, ''))
+		    {
+		    	return 2;
+		    }
+
+		    return 1;
+		},
+		openFile: function()
+		{
+			var input = document.createElement("input");
+			input.type = "file";
+			input.setAttribute("multiple", false);
+			input.setAttribute("accept", "text/html");
+			input.onchange = function (event)
+			{
+			    console.log(this.files);
+			};
+			input.click();
+		},
+		insertToCodeMirror: function(text, cursorPos, group)
+		{
+			var doc = window.editor.getDoc();
+			var cursor = window.editor.getCursor();
+			doc.replaceRange(text, cursor);
+			window.editor.focus();
+			var length = cursorPos != undefined ? cursorPos : text.length
+			cursor.ch += length;
+			window.editor.setCursor(cursor);
+			
+			if (group != undefined)
+			{
+				var token = window.editor.getTokenAt(window.editor.getCursor());
+				var indentationLevel = token.state.htmlState.indented;
+				var identationString = "";
+
+				
+
+				for (var i = 0; i < indentationLevel; i++)
+				{
+					identationString += " ";
+				}
+
+				doc.replaceRange("\n\n" + identationString, cursor);
+				cursor.line++;
+				window.editor.setCursor(cursor);
+				doc.replaceRange(identationString + "    ", cursor);
+			}
+			
+			submitTryit(1);
+		},
+		loadEmptyHTMLFile: function()
+		{
+			var infoText = "Do you want to load a empty HTML template?";
+
+			if (confirm(infoText) == true)
+			{
+				window.editor.getDoc().setValue(UILiveEditor.htmlTemplates.empty.text);
+				var cursor = window.editor.getCursor();
+				window.editor.focus();
+				var length = UILiveEditor.htmlTemplates.empty.text.length
+				cursor.ch += length;
+				cursor.line = 19;
+				window.editor.setCursor(cursor);
+				submitTryit(1);
+			}
+		},
+		loadFormExamples: function()
+		{
+			var infoText = "Do you want to load the HTML-Form examples?";
+
+			if (confirm(infoText) == true)
+			{
+				window.editor.getDoc().setValue(UILiveEditor.htmlTemplates.example.text);
+				var cursorPos = UILiveEditor.htmlTemplates.example.cursorPos;
+				var cursor = window.editor.getCursor();
+				window.editor.focus();
+				var length = cursorPos != undefined ? cursorPos : UILiveEditor.htmlTemplates.example.text.length
+				cursor.ch += length;
+				cursor.line = 47;
+				window.editor.setCursor(cursor);
+				submitTryit(1);
+			}
+		},
+		clearAll: function()
+		{
+			var infoText = "Do you want to clear the document?";
+
+			if (confirm(infoText) == true)
+			{
+				window.editor.getDoc().setValue("");
+				submitTryit(1);
+			}
+		},
+		setTheme: function(value)
+		{
+			var ifr = $Id("iframeResult")
+
+			if (ifr != undefined)
+			{
+				if (ifr.contentWindow.UIFormElements != undefined)
+				{
+					ifr.contentWindow.UIFormElements.changeTheme(value);
+				}
+			}
+		},
+		setDocumentTitle: function()
+		{
+			if (window.editor)
+			{
+				var docText = window.editor.getDoc().getValue();
+				var match = docText.match(/(<title>(.*)<\/title>)/);
+				if (match != undefined && match[2] != undefined)
+				{
+					UILiveEditor.document.title = match[2];
+				}
+				$Id("document-title").textContent = UILiveEditor.document.title;
+			}
+		},
+		undo: function()
+		{
+			if (window.editor != undefined)
+			{
+				window.editor.undo();
+				submitTryit(1);
+			}
+		},
+		setSize: function(value)
+		{
+			UILiveEditor.document.zoomLevel = value != 0 ? Number(UILiveEditor.document.zoomLevel) + Number(value) : 1;
+
+			var text;
+			if (window.editor)
+			{
+				text = window.editor.getDoc().getValue("\n");
+			}
+
+			text = text.replace(/.*\n.*body \*[\s\S\{]*?\}\n/m, "");
+			text = value != 0 ? text.replace(/<\/style>/g, "\n        body * {\n            font-size: " + UILiveEditor.document.zoomLevel.toFixed(1) + "rem;\n        }\n    </style>") : text;
+			window.editor.getDoc().setValue(text);
+			submitTryit(1);
+		},
+		aboutDialog: function()
+		{
+			var ifr = $Id("iframeResult")
+	 		var UIFormElements;
+
+			if (ifr != undefined)
+			{
+				if (ifr.contentWindow.UIFormElements != undefined)
+				{
+					UIFormElements = ifr.contentWindow.UIFormElements;
+				}
+			}
+
+			document.body.parentNode.style = "filter: blur(16px);";
+			setTimeout(function() {
+				alert("UIFormElements.js v" + UIFormElements.VERSION + "\n\n\
+Legacy-compatible HTML Form toolkit\n\n\
+Copyright 2026 Jonathan Nowca - License: CC BY-NC-SA \n\n\
+Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luce80\n\n");
+				document.body.parentNode.style = "";
+			}, 100);
+		}
+	}
+
+	submitTryit()
+
+	function submitTryit(n) {
+		if (window.editor)
+		{
+			window.editor.save();
+		}
+
+		var text = $Id("textareaCode").value;
+
+		if (window.editor)
+		{
+			text = window.editor.getDoc().getValue("\n");
+		}
+		text = text.replace(/\n\n\n/g,"\n\n"); // normalize newlines (??!!)
+		
+		var ifc = $Id("iframecontainer");
+		var ifr = $Id("iframeResult");
+		var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+
+		ifrw.document.open();
+		ifrw.document.write(text);
+		ifrw.document.close();
+
+		if (ifrw.document.body && !ifrw.document.body.isContentEditable)
+		{
+			ifrw.document.body.contentEditable = true;
+			ifrw.document.body.contentEditable = false;
+		}
+
+		var themeSelector = $Id("theme-selection");
+
+		if (themeSelector != undefined)
+		{
+			UILiveEditor.setTheme(themeSelector.value);
+		}
+
+		UILiveEditor.setDocumentTitle();
+	}
+
+	function reEdited() {
+		var text = frameHTML();
+		$Id("textareaCode").value = text;
+		window.editor.getDoc().setValue(text);
+	}
+
+	var layout = "horizontal";
+	var leftwidthperc = 50 ;
+	var leftheightperc = 50 ;
+
+	function restack() {
+		var l = $Id("textareacontainer");
+		var c = $Id("dragbar");
+		var r = $Id("iframecontainer");
+		if (layout == "vertical") {
+			l.style["height"] = c.style["height"] = r.style["height"] = "100%";
+			l.style["width"] = "calc(" + leftwidthperc + "% - 6px)";
+			c.style["width"] = "12px";
+			c.style["cursor"] = "col-resize";
+			r.style["width"] = "calc(" + (100 - leftwidthperc) + "% - 6px)";
+			layout = "horizontal"
+		} else {
+			l.style["width"] = c.style["width"] = r.style["width"] = "100%";
+			l.style["height"] = "calc(" + leftheightperc + "% - 6px)";
+			c.style["height"] = "12px";
+			c.style["cursor"] = "row-resize";
+			r.style["height"] = "calc(" + (100 - leftheightperc) + "% - 6px)";
+			layout = "vertical"		
+		}
+	}
+
+	dragBalance($Id(("dragbar")));
+
+	function dragBalance(balancer) {
+		if (window.addEventListener) {
+			balancer.addEventListener("mousedown", function(e) {dragstart(e);});
+			window.addEventListener("mousemove", function(e) {dragmove(e);});
+			window.addEventListener("mouseup", dragend);
+		}
+
+		var dragging = false;
+		var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+		function dragstart(e) {
+			e.preventDefault();
+			e = e || window.event;
+			// get the mouse cursor position at startup:
+			pos3 = e.clientX;
+			pos4 = e.clientY;
+			dragging = true;
+		}
+		function dragmove(e) {
+			var perc;
+			if (dragging) {
+				// show overlay to avoid interfering of mouse moving with textarea
+				$Id("shield").style.display = "block";        
+				e = e || window.event;
+				// calculate the new cursor position:
+				pos1 = pos3 - e.clientX;
+				pos2 = pos4 - e.clientY;
+				pos3 = e.clientX;
+				pos4 = e.clientY;
+				// set the element's new size:
+				if (layout == "vertical") {
+					var pos = pos2;
+					var axe1 = "clientHeight";
+					var axe2 = "height";
+					perc = (balancer.previousElementSibling[axe1] + (balancer[axe1] / 2) - pos) * 100 / balancer.parentElement[axe1];
+					leftheightperc = perc;
+				} else {
+					var pos = pos1;
+					var axe1 = "clientWidth";
+					var axe2 = "width";
+					perc = (balancer.previousElementSibling[axe1] + (balancer[axe1] / 2) - pos) * 100 / balancer.parentElement[axe1];
+					leftwidthperc = perc;
+				}
+				if (perc > 20 && perc < 80) {
+					balancer.previousElementSibling.style[axe2] = "calc(" + (perc) + "% - " + (balancer[axe1] / 2) + "px)";
+					balancer.nextElementSibling.style[axe2] = "calc(" + (100 - perc) + "% - " + (balancer[axe1] / 2) + "px)";
+				}
+			}
+		}
+		function dragend() {
+			$Id("shield").style.display = "none";
+			dragging = false;
+			if (window.editor) {
+				window.editor.refresh();
+			}
+		}
+	}
+
+	function keypressed(e) {
+		if (e.key != "ArrowLeft" && e.key != "ArrowRight" && e.key != "ArrowUp" && e.key != "ArrowDown") {submitTryit(1)};
+	}
+
+	function keypressedinframe(e) {
+		if (e.key != "ArrowLeft" && e.key != "ArrowRight" && e.key != "ArrowUp" && e.key != "ArrowDown") {reEdited()};
+		setTimeout(reEdited,100);
+	}
+
+	if (window.addEventListener)
+	{
+		$Id("textareacontainer").addEventListener("keyup", function(e) { keypressed(e); });
+	}
+
+	frameWindow().addEventListener("keyup", keypressedinframe);
+
+	function colorcoding() {  
+		window.editor = CodeMirror.fromTextArea($Id("textareaCode"), {
+			mode: "text/html",
+			dragDrop: false,
+			htmlMode: true,
+			lineWrapping: false,
+			lineNumbers: true,
+			smartIndent: true,
+			indentUnit: 4,
+			tabSize: 4,
+			indentWithTabs: true,
+			addModeClass: true,
+			autoCloseTags: true,
+			autoCloseBrackets: true
+		});
+
+		UILiveEditor.setDocumentTitle();
+	}
+
+	colorcoding();
+
+	function frameWindow(){
+		var ifr = $Id("iframeResult");
+		var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+		return ifrw;
+	}
+
+	function frameHTML() {
+		var ifrw = frameWindow();
+		ifrw.document.body.removeAttribute("contentEditable");// = false;
+		var text = "<!DOCTYPE html>\n<html>\n" + ifrw.document.documentElement.innerHTML.replace(/^\n+|\n+$/g,'').trim() + "\n</html>";
+		text = text.replace(/\n\n\n/g,"\n\n"); // normalize newlines (??!!)
+		return text;
+	}
+	
+	function loadFile() {
+		UILiveEditor.openFile()
+
+		var name = $Id("filename").value;
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', name);
+		xhr.onreadystatechange = function()
+		{
+			if (xhr.readyState == XMLHttpRequest.DONE)
+			{
+				if (xhr.status === 200)
+				{
+					if (window.editor)
+					{
+						var ifr = $Id("iframeResult");
+						var sourceText = xhr.responseText;
+						sourceText = sourceText.replace("</head>", '    <!-- UIFormElements.js -->\n    <script src="js/ui-form-elements.production.min.js"><\/script>\n<\/head>');
+						sourceText = sourceText.replace("</head>", '    <!-- UIFormElements.js CSS-Themes: -->\n    <link rel="stylesheet" href="css/ui-form-elements.themes.css">\n<\/head>');
+						window.editor.getDoc().setValue(sourceText);
+						submitTryit(1);
+					}
+		        }
+		        else
+		        {
+		           	console.error(xhr.statusText);
+		        }
+			}
+		}
+		xhr.onerror = function(error)
+		{
+			console.error(error);
+		}
+		xhr.send();
+	}
+
+	function getName() {
+		var name = $Id("filename").value;
+		return name = name.slice(name.lastIndexOf("/") + 1);		
+	}
+
+	function downloadFile() {
+		var text = frameHTML();
+		//text = window.editor.getDoc().getValue("\n");
+		var blob = new Blob([text], {type: "text/html;charset=utf-8"});
+		saveAs(blob, getName());
+	}
+
+	function frameEditable() {
+		$Id("checkedit").value = ~ $Id("checkedit").value;
+		if ($Id("checkedit").value == 0) {
+			framecontentedit = true;
+			$Id("switchflag").innerHTML = "ON";
+		} else {
+			framecontentedit = false;
+			$Id("switchflag").innerHTML = "OFF";
+		}
+		submitTryit();
+		reEdited();
+	}
+</script>
+<script src="js/FileSaver.js"></script>
+<script>
+	/* alert before leaving page */
+	window.addEventListener(
+		"beforeunload",
+		function (e)
+		{
+			var confirmationMessage = 'You have unsaved changes.'
+									+ 'Are you sure?';
+
+			(e || window.event).returnValue = confirmationMessage; //Gecko + IE
+			return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+		}
+	);
+
+	window.onbeforeunload = function(e) { if (e) {e.returnValue = "You have unsaved changes."}; return "Are you sure?"; }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIFormElements.js example - declarative HTML</title>
+    <link rel="stylesheet" href="../css/themes/system-ui.css">
+    <link rel="stylesheet" href="../css/themes/system-ui-dark.css">
+    <link rel="stylesheet" href="../css/themes/chromium.css">
+    <link rel="stylesheet" href="../css/themes/gimp.css">
+    <link rel="stylesheet" href="../css/themes/windows-classic.css">
+    <link rel="stylesheet" href="../css/themes/deep-blue.css">
+    <link rel="stylesheet" href="../css/themes/terminal.css">
+    <link rel="stylesheet" href="../css/themes/custom.css">
+    <script src="../js/components/UIFormElements.js"></script>
+    <script src="../js/components/UIForm.js"></script>
+    <script src="../js/components/UIElement.js"></script>
+    <script src="../js/components/UILabel.js"></script>
+    <script src="../js/components/UIGroup.js"></script>
+    <script src="../js/components/UISlider.js"></script>
+    <script src="../js/components/UICustomHTMLElement.js"></script>
+    <script src="../js/components/UITab.js"></script>
+    <script src="../js/components/UICheckbox.js"></script>
+    <script src="../js/components/UIButton.js"></script>
+    <script src="../js/components/UITextInput.js"></script>
+    <script src="../js/components/UIDropdownList.js"></script>
+    <script src="../js/components/UISeperator.js"></script>
+    <script src="../js/components/UIRadioButton.js"></script>
+    <script src="../js/components/UITextArea.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        
+        body {
+            padding: 32px;
+        }
+
+        .Tab {
+            width: 660px;
+        }
+
+        label, input, select {
+            display: inline-block;
+        }
+
+        #theme {
+            margin-bottom: 8px;
+        }
+
+        code {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>UIFormElements.js - Legacy-compatible prototyping HTML-Form toolkit.</h1>
+    <div><span id="version"></span>- Tested with Firefox 25 and Chromium 70 (Linux x64)</div>
+    <br>
+
+    <div id="declarative-code-container" style="display: inline-block; vertical-align: top;">
+        <h2>With declarative HTML:</h2>
+        <p>This example uses UIFormElements with declarative HTML Code, converted by the function <code>UIFormElements.init()</code></p>
+        <p>The slider-labels and the text-input-label are using the <code>bind=""</code>-attribute with the ids of the related elements in their HTML-tags</p>
+        <br>
+    </div>
+
+    <div class="Layout" id="main-container">
+        <div class="Tab" id="tab-group-1" title="Fieldset Tab Group" style="width: 520px;">
+            <div class="Group" inline=true>
+                <div class="Label" id="label-1" inline=false>First Labeltext</div>
+                <div class="Button" id="button-1">With a Button</div>
+            </div>
+            <div class="Group" inline=true>
+                <div class="Label" id="label-2" inline=false>Second Labeltext</div>
+                <div class="Button" id="button-2">Another Button</div>
+            </div>
+            <div class="Group" inline=true>
+                <div class="Label" id="label-3" inline=false disabled=true>Third Labeltext</div>
+                <div class="Button" id="button-3" disabled=true>Third Button</div>
+            </div>
+        </div>
+        <div class="Tab" id="tab-group-2" title="Next Fieldset Tab Group" style="width: 520px">
+            <div class="Checkbox" id="checkbox-1">First Checkbox</div>
+            <div class="Checkbox" id="checkbox-2">Second Checkbox</div>
+            <div class="Checkbox" id="checkbox-3">Third Checkbox</div>
+            <div class="Checkbox" id="checkbox-4" disabled=true>Last Checkbox</div>
+        </div>
+        <div class="Tab" id="tab-group-3" title="Tab Group with Radio-buttons" style="width: 520px;">
+            <div class="RadioButton" id="radiobutton-1" name="radio-group">First Radio-Button</div>
+            <div class="RadioButton" id="radiobutton-2" name="radio-group">Second Radio-Button</div>
+            <div class="RadioButton" id="radiobutton-4" name="radio-group" disabled="true">Another Radio-Button</div>
+        </div>
+        <div class="Tab" id="tab-group-4" title="Tab Group with sliders" style="width: 520px">
+            <div class="Group">
+                <div class="Label" style="width: 100px;">Percent:</div>
+                <div class="Slider" id="ui-slider-1" min=0, max=100 value=75 step=1 style="width: 220px;" inline=true></div>
+                <div class="Label Value" bind="ui-slider-1" style="float: right;">{value}%</div>
+                <br>
+                <div class="Label" style="width: 100px;">Balance:</div>
+                <div class="Slider" id="ui-slider-2" min=0, max=50 value=19.99 step=0.01 style="width: 220px;" inline=true></div>
+                <div class="Label Value" bind="ui-slider-2" style="float: right;">{value} $</div>
+                <br>
+                <div class="Label" style="width: 100px;">Frequency:</div>
+                <div class="Slider" id="ui-slider-3" min=0, max=44100 value=44100 step=1 style="width: 220px;" inline=true></div>
+                <div class="Label Value" bind="ui-slider-3" style="float: right;">{value} Hz</div>
+            </div>
+        </div>
+        <div class="Tab" id="tab-group-5" title="Tab Group with Dropdown-Fields" style="width: 520px;">
+            <div class="Group">
+                <div class="Label">Dropdown-List:</div>
+                <div class="DropdownList" id="dropdown-1" values="[First entry of list, Second entry of list, The last entry of the Dropdown-list]"></div>
+                <div class="Label">Multiple selection list:</div>
+                <div class="DropdownList" id="dropdown-2" multiple="true" values="[Multiple-list entry 1, Multiple-list entry 2, Multiple-list entry 3]"></div>
+            </div>
+            <div class="Group">
+                <div class="Label">Textarea-field:</div>
+                <div class="TextArea" id="textarea-1" rows="5" cols="30" placeholder="Placeholder text" style="resize: none">Some Text-Content in a TextArea-Field.</div>
+            </div>
+        </div>
+        <div class="Tab" id="tab-group-6" title="Tab Group with Dropdown-Fields" style="width: 520px;">
+            <div class="Group">
+                <div class="Label" style="width: 100px;">Textinput-Field:</div>
+                <div class="TextInput" id="text-input-1" placeholder="Type in something" inline=true></div>
+            </div>
+            <div class="Group">
+                <div class="Label" style="width: 100px;">Value:</div>
+                <div class="Label Value" bind="text-input-1">The text is "{value}"</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // this node is the root of the generated html form
+        var declarativeRootNode = document.getElementById("declarative-code-container");
+
+        // set the configuration and initialize the html-node with its id
+        UIFormElements.setConfig({
+            userselect: false,
+            theme: "SystemUI"
+        });
+
+        // version
+        document.getElementById("version").textContent = "Version " + UIFormElements.VERSION;
+    </script>
+
+    <!-- initialization of declarative html tree "#main-container" -->
+    <script src="../js/examples/declarative-html.js"></script>
+</body>
+</html>

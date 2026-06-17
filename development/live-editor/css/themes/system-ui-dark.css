@@ -1,0 +1,80 @@
+/* System-UI-Dark-Colorset */
+
+body.SystemUIDark {
+    background-color: #22262A;
+}
+
+body.SystemUIDark * {
+    color: #C8C8C8;
+}
+
+body.SystemUIDark fieldset {
+    background-color: #303841;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark input,
+body.SystemUIDark select,
+body.SystemUIDark textarea {
+    background-color: #22262A;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark input:focus,
+body.SystemUIDark select:focus,
+body.SystemUIDark textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.SystemUIDark button:enabled,
+body.SystemUIDark input[type=submit]:enabled  {
+    background-color: #414952;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark button:hover:enabled,
+body.SystemUIDark input[type=submit]:hover:enabled {
+    background-color: #38404A !important;
+}
+
+body.SystemUIDark button:active:enabled,
+body.SystemUIDark input[type=submit]:active:enabled {
+    background-color: #47586C !important;
+}
+
+body.SystemUIDark button:disabled,
+body.SystemUIDark input:disabled,
+body.SystemUIDark select:disabled,
+body.SystemUIDark input[type=submit]:disabled,
+body.SystemUIDark textarea:disabled,
+body.SystemUIDark select:disabled {
+    background-color: #303841;
+    color: #777777;
+    border: 1px solid #555555;
+}
+
+body.SystemUIDark option:checked {
+    color: #C8C8C8;
+    background-color: #47586C;
+}
+
+body.SystemUIDark select:disabled option {
+    color: #777777;
+}
+
+body.SystemUIDark label[disabled=true],
+body.SystemUIDark label.disabled {
+    color: #777777;
+}
+
+body.SystemUIDark .Value,
+body.SystemUIDark label span,
+body.SystemUIDark code span,
+body.SystemUIDark code {
+    color: #9FB7D9;
+}
+
+body.SystemUIDark .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #414952;
+}

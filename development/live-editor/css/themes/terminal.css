@@ -1,0 +1,123 @@
+/* Terminal */
+
+body.Terminal {
+    background-color: #111111;
+
+}
+
+body.Terminal * {
+    color: #BEBEBE;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 11.5px;
+}
+
+body.Terminal fieldset {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal input,
+body.Terminal select,
+body.Terminal textarea {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal input[type=range] {
+    color: #555555;
+    -webkit-appearance: none;
+    background-color: #000000;
+}
+
+body.Terminal input[type='range']::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #888888;
+}
+
+body.Terminal input:focus,
+body.Terminal select:focus,
+body.Terminal textarea:focus {
+    outline: 0px solid #5B5B5B;
+}
+
+body.Terminal button:enabled,
+body.Terminal input[type=submit]:enabled  {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal button:hover:enabled,
+body.Terminal input[type=submit]:hover:enabled {
+    background-color: #222222 !important;
+}
+
+body.Terminal button:active:enabled,
+body.Terminal input[type=submit]:active:enabled {
+    background-color: #333333 !important;
+}
+
+body.Terminal button:disabled,
+body.Terminal input:disabled,
+body.Terminal input[type=submit]:disabled,
+body.Terminal textarea:disabled {
+    background-color: #3B3B3B;
+    color: #979CA6;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal label[disabled=true],
+body.Terminal label.disabled {
+    color: #999999;
+}
+
+body.Terminal .Value,
+body.Terminal label span,
+body.Terminal code span,
+body.Terminal code {
+    color: #3A72C6;
+}
+
+body.Terminal .Seperator {
+    border-bottom: 2px solid #aaaaaa;
+    border-color: #E0E0E2;
+}
+
+/* Terminal: Code Console Override */
+
+body.Terminal {
+    scrollbar-width: 16px !important;
+}
+
+body.Terminal .CodeOutputActive {
+    margin: 4px;
+    padding: 8px;
+}
+
+body.Terminal #html-code-output-content,
+body.Terminal #html-code-output-content * {
+    background-color: #111111 !important;
+    box-shadow: none !important;
+}
+
+body.Terminal #html-code-output-content {
+    border: 0 !important;
+    padding: 8px !important;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar {
+    height: 20px;
+    width: 20px;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar-track {
+    background-color: #111111;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar-thumb {
+    background-color: #555555;
+    border-radius: 0;
+    border: 3px solid #111111;
+}

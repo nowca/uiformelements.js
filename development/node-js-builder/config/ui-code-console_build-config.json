@@ -1,0 +1,12 @@
+{
+	"name": "UICodeConsole.js",
+	"productionFile": "ui-code-console.production.js",
+	"compressedFile": "ui-code-console.production.min.js",
+	"sourcePath": "../js/",
+	"fileList": [
+		"extensions/code-console/split-0.1.0/split.js",
+		"extensions/code-console/code-prettify/prettify.js",
+		"extensions/code-console/js-beautify-1.2.0/beautify-html.js",
+		"extensions/code-console/UICodeConsole.js"
+	]
+}

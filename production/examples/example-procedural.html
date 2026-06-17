@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIFormElements.js example - procedural JavaScript</title>
+    <link rel="stylesheet" href="../css/themes/system-ui.css">
+    <link rel="stylesheet" href="../css/themes/system-ui-dark.css">
+    <link rel="stylesheet" href="../css/themes/chromium.css">
+    <link rel="stylesheet" href="../css/themes/gimp.css">
+    <link rel="stylesheet" href="../css/themes/windows-classic.css">
+    <link rel="stylesheet" href="../css/themes/deep-blue.css">
+    <link rel="stylesheet" href="../css/themes/terminal.css">
+    <link rel="stylesheet" href="../css/themes/custom.css">
+    <script src="../js/ui-form-elements.production.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        
+        body {
+            padding: 32px;
+        }
+
+        .Tab {
+            width: 660px;
+        }
+
+        label, input, select {
+            display: inline-block;
+        }
+
+         #theme {
+            margin-bottom: 8px;
+        }
+
+        /* login-form css */
+
+        #login-form * {
+            font-size: 15px;
+            border-width: 2px !important;
+        }
+
+        #login-form legend
+        {
+            font-weight: bold;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #login-form #user-name,
+        #login-form #email-address,
+        #login-form #password {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        #login-form input[type=text],
+        #login-form input[type=password]
+        {
+            padding: 8px !important;
+            width: 260px;
+        }
+
+        #login-form button {
+            font-weight: bold;
+            margin-left: 4px;
+            margin-top: 8px;
+            padding: 8px 20px 8px 20px !important;
+            transition: all 0.25s ease-in-out;
+        }
+
+        #login-form .Group {
+            margin-bottom: 8px;
+        }
+
+        #login-form select {
+            width: 176px;
+        }
+    </style>
+</head>
+<body>
+    <h1>UIFormElements.js - Legacy-compatible prototyping HTML-Form toolkit.</h1>
+    <div><span id="version"></span>- Tested with Firefox 25 and Chromium 70 (Linux x64)</div>
+    <br>
+
+    <div id="procedural-code-container" style="display: inline-block; vertical-align: top; margin-left: 16px;">
+        <h2>With procedural JavaScript instructions:</h2>
+        <p>This example uses UIFormElements with procedural JavaScript Code, converted to HTML by the function <code>createHTMLElement()</code></p>
+        <br>
+    </div>
+    <script>
+        // this node is the root of the generated html form
+        var proceduralRootNode = document.getElementById("procedural-code-container");
+
+        // set the configuration and initialize the html-node with its id
+        UIFormElements.setConfig({
+            userselect: false,
+            theme: "SystemUI"
+        });
+
+        // version
+        document.getElementById("version").textContent = "Version " + UIFormElements.VERSION;
+    </script>
+
+    <!-- procedural creation of uiForm-object -->
+    <script src="../js/examples/procedural-code.js"></script>
+
+    <script>
+        // get and add the html contents to the selected html nodes
+        proceduralRootNode.appendChild(uiForm.createHTMLElement());
+    </script>
+</body>
+</html>

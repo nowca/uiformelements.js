@@ -1,0 +1,70 @@
+ /* System-UI-Colorset */
+
+body.SystemUI {
+    background-color: #F9F9FA;
+}
+
+body.SystemUI * {
+    color: #474C58;
+}
+
+body.SystemUI fieldset {
+    background-color: #EDEDEF;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI input,
+body.SystemUI select,
+body.SystemUI textarea {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI input:focus,
+body.SystemUI select:focus,
+body.SystemUI textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.SystemUI button:enabled,
+body.SystemUI input[type=submit]:enabled  {
+    background-color: #E0E0E2;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI button:hover:enabled,
+body.SystemUI input[type=submit]:hover:enabled {
+    background-color: #D4D4D6 !important;
+}
+
+body.SystemUI button:active:enabled,
+body.SystemUI input[type=submit]:active:enabled {
+    background-color: #E0E8ED !important;
+}
+
+body.SystemUI button:disabled,
+body.SystemUI select:disabled,
+body.SystemUI input:disabled,
+body.SystemUI input[type=submit]:disabled,
+body.SystemUI textarea:disabled {
+    background-color: #F4F4F6;
+    color: #979CA6;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI label[disabled=true],
+body.SystemUI label.disabled {
+    color: #999999;
+}
+
+body.SystemUI .Value,
+body.SystemUI label span,
+body.SystemUI code span,
+body.SystemUI code {
+    color: #3A72C6;
+}
+
+body.SystemUI .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #E0E0E2;
+}

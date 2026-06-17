@@ -1,0 +1,71 @@
+/* Gimp-Colorset */
+
+body.Gimp {
+    background-color: #454545;
+}
+
+body.Gimp * {
+    color: #BEBEBE;
+}
+
+body.Gimp fieldset {
+    background-color: #3B3B3B;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp input,
+body.Gimp select,
+body.Gimp textarea {
+    background-color: #2C2C2C;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp input:focus,
+body.Gimp select:focus,
+body.Gimp textarea:focus {
+    outline: 1px solid #5B5B5B;
+}
+
+body.Gimp button:enabled,
+body.Gimp input[type=submit]:enabled  {
+    background-color: #2C2C2C;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp button:hover:enabled,
+body.Gimp input[type=submit]:hover:enabled {
+    background-color: #323232 !important;
+}
+
+body.Gimp button:active:enabled,
+body.Gimp input[type=submit]:active:enabled {
+    background-color: #1F1F1F !important;
+}
+
+body.Gimp button:disabled,
+body.Gimp select:disabled,
+body.Gimp input:disabled,
+body.Gimp input[type=submit]:disabled,
+body.Gimp input[type=submit][disabled],
+body.Gimp textarea:disabled {
+    background-color: #3B3B3B;
+    color: #979CA6;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp label[disabled=true],
+body.Gimp label.disabled {
+    color: #999999;
+}
+
+body.Gimp .Value,
+body.Gimp label span,
+body.Gimp code span,
+body.Gimp code {
+    color: #3A72C6;
+}
+
+body.Gimp .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #5B5B5B;
+}

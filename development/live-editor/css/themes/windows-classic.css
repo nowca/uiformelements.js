@@ -1,0 +1,105 @@
+/* Windows-Classic-Colorset */
+
+body.WindowsClassic {
+    background-color: #C0C0C0;
+}
+
+body.WindowsClassic * {
+    color: #474C58;
+}
+
+body.WindowsClassic fieldset {
+    background-color: #D0D0D0;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic input,
+body.WindowsClassic select,
+body.WindowsClassic textarea {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DCDCDC;
+    border-right: 1px solid #DCDCDC;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+}
+
+body.WindowsClassic input[type=text],
+body.WindowsClassic input[type=password],
+body.WindowsClassic select,
+body.WindowsClassic textarea {
+    box-shadow: inset 1px 1px 0 #808080;
+}
+
+body.WindowsClassic input:focus,
+body.WindowsClassic select:focus,
+body.WindowsClassic textarea:focus {
+    outline: 0;
+}
+
+body.WindowsClassic button:enabled,
+body.WindowsClassic input[type=submit]:enabled  {
+    background-color: #C0C0C0;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic button:active:enabled,
+body.WindowsClassic input[type=submit]:active:enabled {
+    background-color: #C0C0C0;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+    box-shadow: inset 1px 1px 0 #808080;
+
+}
+
+body.WindowsClassic button:disabled,
+body.WindowsClassic button[disabled] {
+    background-color: #C0C0C0;
+    color: #979CA6;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic select:disabled,
+body.WindowsClassic input[type=text]:disabled,
+body.WindowsClassic input[type=password]:disabled,
+body.WindowsClassic input[type=submit]:disabled,
+body.WindowsClassic textarea:disabled {
+    background-color: #C0C0C0;
+    color: #979CA6;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic label[disabled=true],
+body.WindowsClassic label.disabled {
+    color: #999999;
+}
+
+body.WindowsClassic .Value,
+body.WindowsClassic label span,
+body.WindowsClassic code span,
+body.WindowsClassic code {
+    color: #3A72C6;
+}
+
+body.WindowsClassic .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #E0E0E2;
+    box-shadow: 0 -1px 0 #888888;
+}

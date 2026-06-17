@@ -1,0 +1,15 @@
+{
+	"name": "UIFormElements.js CSS Themes",
+	"productionFile": "ui-form-elements.themes.css",
+	"sourcePath": "../css/themes/",
+	"fileList": [
+		"system-ui.css",
+		"system-ui-dark.css",
+		"chromium.css",
+		"gimp.css",
+		"windows-classic.css",
+		"deep-blue.css",
+		"terminal.css",
+		"custom.css"
+	]
+}

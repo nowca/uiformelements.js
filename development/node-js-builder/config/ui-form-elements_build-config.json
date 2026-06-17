@@ -1,0 +1,23 @@
+ {
+	"name": "UIFormElements.js",
+	"productionFile": "ui-form-elements.production.js",
+	"compressedFile": "ui-form-elements.production.min.js",
+	"sourcePath": "../js/",
+	"fileList": [
+		"components/UIFormElements.js",
+		"components/UIForm.js",
+		"components/UIElement.js",
+		"components/UILabel.js",
+		"components/UIGroup.js",
+		"components/UISlider.js",
+		"components/UICustomHTMLElement.js",
+		"components/UITab.js",
+		"components/UICheckbox.js",
+		"components/UIButton.js",
+		"components/UITextInput.js",
+		"components/UIDropdownList.js",
+		"components/UISeperator.js",
+		"components/UIRadioButton.js",
+		"components/UITextArea.js"
+	]
+}

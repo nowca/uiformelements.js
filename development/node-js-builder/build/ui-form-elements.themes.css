@@ -1,0 +1,664 @@
+ /* System-UI-Colorset */
+
+body.SystemUI {
+    background-color: #F9F9FA;
+}
+
+body.SystemUI * {
+    color: #474C58;
+}
+
+body.SystemUI fieldset {
+    background-color: #EDEDEF;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI input,
+body.SystemUI select,
+body.SystemUI textarea {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI input:focus,
+body.SystemUI select:focus,
+body.SystemUI textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.SystemUI button:enabled,
+body.SystemUI input[type=submit]:enabled  {
+    background-color: #E0E0E2;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI button:hover:enabled,
+body.SystemUI input[type=submit]:hover:enabled {
+    background-color: #D4D4D6 !important;
+}
+
+body.SystemUI button:active:enabled,
+body.SystemUI input[type=submit]:active:enabled {
+    background-color: #E0E8ED !important;
+}
+
+body.SystemUI button:disabled,
+body.SystemUI select:disabled,
+body.SystemUI input:disabled,
+body.SystemUI input[type=submit]:disabled,
+body.SystemUI textarea:disabled {
+    background-color: #F4F4F6;
+    color: #979CA6;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI label[disabled=true],
+body.SystemUI label.disabled {
+    color: #999999;
+}
+
+body.SystemUI .Value,
+body.SystemUI label span,
+body.SystemUI code span,
+body.SystemUI code {
+    color: #3A72C6;
+}
+
+body.SystemUI .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #E0E0E2;
+}
+
+/* System-UI-Dark-Colorset */
+
+body.SystemUIDark {
+    background-color: #22262A;
+}
+
+body.SystemUIDark * {
+    color: #C8C8C8;
+}
+
+body.SystemUIDark fieldset {
+    background-color: #303841;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark input,
+body.SystemUIDark select,
+body.SystemUIDark textarea {
+    background-color: #22262A;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark input:focus,
+body.SystemUIDark select:focus,
+body.SystemUIDark textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.SystemUIDark button:enabled,
+body.SystemUIDark input[type=submit]:enabled  {
+    background-color: #414952;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark button:hover:enabled,
+body.SystemUIDark input[type=submit]:hover:enabled {
+    background-color: #38404A !important;
+}
+
+body.SystemUIDark button:active:enabled,
+body.SystemUIDark input[type=submit]:active:enabled {
+    background-color: #47586C !important;
+}
+
+body.SystemUIDark button:disabled,
+body.SystemUIDark input:disabled,
+body.SystemUIDark select:disabled,
+body.SystemUIDark input[type=submit]:disabled,
+body.SystemUIDark textarea:disabled,
+body.SystemUIDark select:disabled {
+    background-color: #303841;
+    color: #777777;
+    border: 1px solid #555555;
+}
+
+body.SystemUIDark option:checked {
+    color: #C8C8C8;
+    background-color: #47586C;
+}
+
+body.SystemUIDark select:disabled option {
+    color: #777777;
+}
+
+body.SystemUIDark label[disabled=true],
+body.SystemUIDark label.disabled {
+    color: #777777;
+}
+
+body.SystemUIDark .Value,
+body.SystemUIDark label span,
+body.SystemUIDark code span,
+body.SystemUIDark code {
+    color: #9FB7D9;
+}
+
+body.SystemUIDark .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #414952;
+}
+
+/* Chromium-Colorset */
+
+body.Chromium {
+    background-color: #FAFAFF;
+}
+
+body.Chromium * {
+    color: #474C58;
+}
+
+body.Chromium fieldset {
+    background-color: #EDF2FA;
+    border: 1px solid #E6E6F0;
+}
+
+body.Chromium input,
+body.Chromium select,
+body.Chromium textarea {
+    background-color: #FFFFFF;
+    border: 1px solid #E6E6F0;
+}
+
+body.Chromium input:focus,
+body.Chromium select:focus,
+body.Chromium textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.Chromium button:enabled,
+body.Chromium input[type=submit]:enabled  {
+    background-color: #E1E5ED;
+    border: 1px solid #E1E5ED;
+}
+
+body.Chromium button:hover:enabled,
+body.Chromium input[type=submit]:hover:enabled {
+    background-color: #D4D4D6 !important;
+}
+
+body.Chromium button:active:enabled,
+body.Chromium input[type=submit]:active:enabled {
+    background-color: #E0E8ED !important;
+}
+
+body.Chromium button:disabled,
+body.Chromium input:disabled,
+body.Chromium select:disabled,
+body.Chromium input[type=submit]:disabled,
+body.Chromium textarea:disabled {
+    background-color: #F4F4F6;
+    color: #979CA6;
+    border: 1px solid #E0E0E2;
+}
+
+body.Chromium label[disabled=true],
+body.Chromium label.disabled {
+    color: #999999;
+}
+
+body.Chromium .Value,
+body.Chromium label span,
+body.Chromium code span,
+body.Chromium code {
+    color: #3A72C6;
+}
+
+body.Chromium .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #E0E0E2;
+}
+
+/* Gimp-Colorset */
+
+body.Gimp {
+    background-color: #454545;
+}
+
+body.Gimp * {
+    color: #BEBEBE;
+}
+
+body.Gimp fieldset {
+    background-color: #3B3B3B;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp input,
+body.Gimp select,
+body.Gimp textarea {
+    background-color: #2C2C2C;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp input:focus,
+body.Gimp select:focus,
+body.Gimp textarea:focus {
+    outline: 1px solid #5B5B5B;
+}
+
+body.Gimp button:enabled,
+body.Gimp input[type=submit]:enabled  {
+    background-color: #2C2C2C;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp button:hover:enabled,
+body.Gimp input[type=submit]:hover:enabled {
+    background-color: #323232 !important;
+}
+
+body.Gimp button:active:enabled,
+body.Gimp input[type=submit]:active:enabled {
+    background-color: #1F1F1F !important;
+}
+
+body.Gimp button:disabled,
+body.Gimp select:disabled,
+body.Gimp input:disabled,
+body.Gimp input[type=submit]:disabled,
+body.Gimp input[type=submit][disabled],
+body.Gimp textarea:disabled {
+    background-color: #3B3B3B;
+    color: #979CA6;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp label[disabled=true],
+body.Gimp label.disabled {
+    color: #999999;
+}
+
+body.Gimp .Value,
+body.Gimp label span,
+body.Gimp code span,
+body.Gimp code {
+    color: #3A72C6;
+}
+
+body.Gimp .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #5B5B5B;
+}
+
+/* Windows-Classic-Colorset */
+
+body.WindowsClassic {
+    background-color: #C0C0C0;
+}
+
+body.WindowsClassic * {
+    color: #474C58;
+}
+
+body.WindowsClassic fieldset {
+    background-color: #D0D0D0;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic input,
+body.WindowsClassic select,
+body.WindowsClassic textarea {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DCDCDC;
+    border-right: 1px solid #DCDCDC;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+}
+
+body.WindowsClassic input[type=text],
+body.WindowsClassic input[type=password],
+body.WindowsClassic select,
+body.WindowsClassic textarea {
+    box-shadow: inset 1px 1px 0 #808080;
+}
+
+body.WindowsClassic input:focus,
+body.WindowsClassic select:focus,
+body.WindowsClassic textarea:focus {
+    outline: 0;
+}
+
+body.WindowsClassic button:enabled,
+body.WindowsClassic input[type=submit]:enabled  {
+    background-color: #C0C0C0;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic button:active:enabled,
+body.WindowsClassic input[type=submit]:active:enabled {
+    background-color: #C0C0C0;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+    box-shadow: inset 1px 1px 0 #808080;
+
+}
+
+body.WindowsClassic button:disabled,
+body.WindowsClassic button[disabled] {
+    background-color: #C0C0C0;
+    color: #979CA6;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic select:disabled,
+body.WindowsClassic input[type=text]:disabled,
+body.WindowsClassic input[type=password]:disabled,
+body.WindowsClassic input[type=submit]:disabled,
+body.WindowsClassic textarea:disabled {
+    background-color: #C0C0C0;
+    color: #979CA6;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic label[disabled=true],
+body.WindowsClassic label.disabled {
+    color: #999999;
+}
+
+body.WindowsClassic .Value,
+body.WindowsClassic label span,
+body.WindowsClassic code span,
+body.WindowsClassic code {
+    color: #3A72C6;
+}
+
+body.WindowsClassic .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #E0E0E2;
+    box-shadow: 0 -1px 0 #888888;
+}
+
+/* Deep-Blue-Colorset */
+
+body.DeepBlue {
+    background: #203047;
+    background: linear-gradient(0deg,rgba(32, 48, 71, 1) 0%, rgba(13, 20, 29, 1) 100%);
+}
+
+body.DeepBlue * {
+    color: #9FC2DB;
+}
+
+body.DeepBlue fieldset {
+    border-radius: 4px;
+    background-color: rgba(35, 55, 85, 0.5);
+    border: 1px solid #3C506E;
+    box-shadow: 0px 0px 8px 4px #223655;
+    transition: all 0.25s ease-in-out;
+}
+
+body.DeepBlue fieldset:hover {
+    color: #fff;
+    background-color: rgba(55, 75, 110, 0.5);
+    border: 1px solid #4D7998;
+    box-shadow: 0px 0px 8px 4px #3A5271, inset 0px 0px 8px 4px #3A5271;
+}
+
+body.DeepBlue fieldset:hover legend {
+    color: #fff;
+}
+
+body.DeepBlue fieldset:hover label:not(label[disabled=true]) {
+    color: #DDFFFF;
+}
+
+body.DeepBlue input,
+body.DeepBlue select,
+body.DeepBlue textarea {
+    border-radius: 4px;
+    background-color: rgba(20, 30, 50, 0.5);
+    border: 1px solid #3C506E;
+    transition: all 0.1s ease-in-out;
+}
+
+body.DeepBlue input:hover:not(input[disabled=true]):not(input[type=range]),
+body.DeepBlue select:hover,
+body.DeepBlue textarea:hover {
+    background-color: rgba(30, 40, 60, 0.5);
+    border: 1px solid #8DB0C8;
+    box-shadow: 0px 0px 8px 4px #3A5271;
+}
+
+
+body.DeepBlue input:focus,
+body.DeepBlue select:focus,
+body.DeepBlue textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.DeepBlue button {
+    border-radius: 4px;
+}
+
+body.DeepBlue button:enabled,
+body.DeepBlue input[type=submit]:enabled  {
+    background-color: rgba(55, 75, 110, 0.5);
+    border: 1px solid #3C506E;
+}
+
+body.DeepBlue button:hover:enabled,
+body.DeepBlue input[type=submit]:hover:enabled {
+    background-color: #566D8A !important;
+    color: #FFFFFF;
+    border: 1px solid #A9C9E0;
+    box-shadow: 0px 0px 8px 4px #566D8A, inset 0px 0px 8px 4px #8CAABF;
+}
+
+body.DeepBlue button:active:enabled,
+body.DeepBlue input[type=submit]:active:enabled {
+    background-color: #405C80 !important;
+    color: #A9C9E0;
+}
+
+body.DeepBlue button:disabled,
+body.DeepBlue input:disabled,
+body.DeepBlue select:disabled,
+body.DeepBlue input[type=submit]:disabled,
+body.DeepBlue textarea:disabled,
+body.DeepBlue select:disabled {
+    background-color: #223655;
+    color: #678CA7;
+    border: 1px solid #678CA7;
+}
+
+body.DeepBlue option {
+    background-color: #162135;
+}
+
+body.DeepBlue option:checked {
+    color: #C8C8C8;
+    background-color: #47586C;
+}
+
+body.DeepBlue select:disabled option {
+    color: #777777;
+}
+
+body.DeepBlue label[disabled=true],
+body.DeepBlue label.disabled {
+    color: #678CA7;
+}
+
+body.DeepBlue .Value,
+body.DeepBlue label span,
+body.DeepBlue code span,
+body.DeepBlue code {
+    color: #9FB7D9;
+}
+
+body.DeepBlue .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #3C506E;
+}
+
+body.DeepBlue ::placeholder {
+    color: #3D4F6D;
+}
+
+body.DeepBlue ::-ms-input-placeholder { /* Edge 12 -18 */
+    color: #3D4F6D;
+}
+
+/* Terminal */
+
+body.Terminal {
+    background-color: #111111;
+
+}
+
+body.Terminal * {
+    color: #BEBEBE;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 11.5px;
+}
+
+body.Terminal fieldset {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal input,
+body.Terminal select,
+body.Terminal textarea {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal input[type=range] {
+    color: #555555;
+    -webkit-appearance: none;
+    background-color: #000000;
+}
+
+body.Terminal input[type='range']::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #888888;
+}
+
+body.Terminal input:focus,
+body.Terminal select:focus,
+body.Terminal textarea:focus {
+    outline: 0px solid #5B5B5B;
+}
+
+body.Terminal button:enabled,
+body.Terminal input[type=submit]:enabled  {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal button:hover:enabled,
+body.Terminal input[type=submit]:hover:enabled {
+    background-color: #222222 !important;
+}
+
+body.Terminal button:active:enabled,
+body.Terminal input[type=submit]:active:enabled {
+    background-color: #333333 !important;
+}
+
+body.Terminal button:disabled,
+body.Terminal input:disabled,
+body.Terminal input[type=submit]:disabled,
+body.Terminal textarea:disabled {
+    background-color: #3B3B3B;
+    color: #979CA6;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal label[disabled=true],
+body.Terminal label.disabled {
+    color: #999999;
+}
+
+body.Terminal .Value,
+body.Terminal label span,
+body.Terminal code span,
+body.Terminal code {
+    color: #3A72C6;
+}
+
+body.Terminal .Seperator {
+    border-bottom: 2px solid #aaaaaa;
+    border-color: #E0E0E2;
+}
+
+/* Terminal: Code Console Override */
+
+body.Terminal {
+    scrollbar-width: 16px !important;
+}
+
+body.Terminal .CodeOutputActive {
+    margin: 4px;
+    padding: 8px;
+}
+
+body.Terminal #html-code-output-content,
+body.Terminal #html-code-output-content * {
+    background-color: #111111 !important;
+    box-shadow: none !important;
+}
+
+body.Terminal #html-code-output-content {
+    border: 0 !important;
+    padding: 8px !important;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar {
+    height: 20px;
+    width: 20px;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar-track {
+    background-color: #111111;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar-thumb {
+    background-color: #555555;
+    border-radius: 0;
+    border: 3px solid #111111;
+}
+
+/* Custom */
+
+/* you can use this file to play around with your own custom theme */
+
+body.Custom {
+    background-color: #F3EDDE;
+}
+

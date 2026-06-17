@@ -1,0 +1,47 @@
+/**
+ * @license
+ * Copyright (C) 2015 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* Pretty printing styles. Used with prettify.js. */
+
+
+/* SPAN elements with the classes below are added by prettyprint. */
+.pln { color: #204061 !important }  /* plain text */
+
+@media screen, print, projection {
+  .str { color: #658923 !important }  /* string content */
+  .kwd { color: #204061 !important }  /* a keyword */
+  .com { color: #066 !important }  /* a comment */
+  .typ { color: #956480 !important }  /* a type name */
+  .lit { color: #066 !important }  /* a literal value */
+  /* punctuation, lisp open bracket, lisp close bracket */
+  .pun, .opn, .clo { color: #660 !important }
+  .tag { color: #517194 !important }  /* a markup tag name */
+  .atn { color: #956480 !important }  /* a markup attribute name */
+  .atv { color: #658923 !important }  /* a markup attribute value */
+  .dec, .var { color: #956480 !important }  /* a declaration; a variable name */
+  .fun { color: red }  /* a function name */
+}
+
+/* Put a border around prettyprinted code snippets. */
+pre.prettyprint { padding: 2px; border: 1px solid #888 !important }
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0 } /* IE indents via margin-left */
+
+li::marker {
+  color: #bbbbbb;
+}

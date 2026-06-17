@@ -1,0 +1,15 @@
+{
+  "name": "node-js-linker-and-compressor",
+  "version": "1.0.0",
+  "description": "Takes a file-list from given config files and links and compresses the js-files.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build-production-files.js config/ui-form-elements_build-config.json config/ui-code-console_build-config.json config/css-themes_build-config.json"
+  },
+  "keywords": [],
+  "author": "Jonathan Nowca",
+  "type": "commonjs",
+  "dependencies": {
+    "babel-minify": "^0.5.2"
+  }
+}

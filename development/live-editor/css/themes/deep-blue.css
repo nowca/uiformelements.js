@@ -1,0 +1,130 @@
+/* Deep-Blue-Colorset */
+
+body.DeepBlue {
+    background: #203047;
+    background: linear-gradient(0deg,rgba(32, 48, 71, 1) 0%, rgba(13, 20, 29, 1) 100%);
+}
+
+body.DeepBlue * {
+    color: #9FC2DB;
+}
+
+body.DeepBlue fieldset {
+    border-radius: 4px;
+    background-color: rgba(35, 55, 85, 0.5);
+    border: 1px solid #3C506E;
+    box-shadow: 0px 0px 8px 4px #223655;
+    transition: all 0.25s ease-in-out;
+}
+
+body.DeepBlue fieldset:hover {
+    color: #fff;
+    background-color: rgba(55, 75, 110, 0.5);
+    border: 1px solid #4D7998;
+    box-shadow: 0px 0px 8px 4px #3A5271, inset 0px 0px 8px 4px #3A5271;
+}
+
+body.DeepBlue fieldset:hover legend {
+    color: #fff;
+}
+
+body.DeepBlue fieldset:hover label:not(label[disabled=true]) {
+    color: #DDFFFF;
+}
+
+body.DeepBlue input,
+body.DeepBlue select,
+body.DeepBlue textarea {
+    border-radius: 4px;
+    background-color: rgba(20, 30, 50, 0.5);
+    border: 1px solid #3C506E;
+    transition: all 0.1s ease-in-out;
+}
+
+body.DeepBlue input:hover:not(input[disabled=true]):not(input[type=range]),
+body.DeepBlue select:hover,
+body.DeepBlue textarea:hover {
+    background-color: rgba(30, 40, 60, 0.5);
+    border: 1px solid #8DB0C8;
+    box-shadow: 0px 0px 8px 4px #3A5271;
+}
+
+
+body.DeepBlue input:focus,
+body.DeepBlue select:focus,
+body.DeepBlue textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.DeepBlue button {
+    border-radius: 4px;
+}
+
+body.DeepBlue button:enabled,
+body.DeepBlue input[type=submit]:enabled  {
+    background-color: rgba(55, 75, 110, 0.5);
+    border: 1px solid #3C506E;
+}
+
+body.DeepBlue button:hover:enabled,
+body.DeepBlue input[type=submit]:hover:enabled {
+    background-color: #566D8A !important;
+    color: #FFFFFF;
+    border: 1px solid #A9C9E0;
+    box-shadow: 0px 0px 8px 4px #566D8A, inset 0px 0px 8px 4px #8CAABF;
+}
+
+body.DeepBlue button:active:enabled,
+body.DeepBlue input[type=submit]:active:enabled {
+    background-color: #405C80 !important;
+    color: #A9C9E0;
+}
+
+body.DeepBlue button:disabled,
+body.DeepBlue input:disabled,
+body.DeepBlue select:disabled,
+body.DeepBlue input[type=submit]:disabled,
+body.DeepBlue textarea:disabled,
+body.DeepBlue select:disabled {
+    background-color: #223655;
+    color: #678CA7;
+    border: 1px solid #678CA7;
+}
+
+body.DeepBlue option {
+    background-color: #162135;
+}
+
+body.DeepBlue option:checked {
+    color: #C8C8C8;
+    background-color: #47586C;
+}
+
+body.DeepBlue select:disabled option {
+    color: #777777;
+}
+
+body.DeepBlue label[disabled=true],
+body.DeepBlue label.disabled {
+    color: #678CA7;
+}
+
+body.DeepBlue .Value,
+body.DeepBlue label span,
+body.DeepBlue code span,
+body.DeepBlue code {
+    color: #9FB7D9;
+}
+
+body.DeepBlue .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #3C506E;
+}
+
+body.DeepBlue ::placeholder {
+    color: #3D4F6D;
+}
+
+body.DeepBlue ::-ms-input-placeholder { /* Edge 12 -18 */
+    color: #3D4F6D;
+}
