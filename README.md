@@ -8,6 +8,8 @@
 
 It is sucessfully tested with Firefox 25 and Chromium 70 on Linux x64.
 
+> Check out the live-editor: https://nowca.github.io/uiformelements.js/development/live-editor/UILiveEditor.html
+
 <br>
 
 ![screenshot](doc/screenshot.jpg)
