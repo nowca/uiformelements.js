@@ -33,7 +33,7 @@ function UICustomHTMLElement(options)
 
     	instance.type = "UICustomHTMLElement";
     	instance.defaultAttributes._htmlNode = options.htmlNode || undefined;
-    	instance.defaultAttributes._class = options.class || "CustomHTML" || undefined;
+    	instance.defaultAttributes._class = options.class || undefined;
     	instance.defaultAttributes._tagName = options.tagName || "div";
     	instance.defaultAttributes._text = options.text || undefined;
     	instance.childUIElements = [];

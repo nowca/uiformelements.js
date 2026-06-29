@@ -1,6 +1,6 @@
 # UIFormElements.js
 
-> **The version 0.8b is in its beta state. Some attributes are not implemented. The library can be used for basic applications and tasks, such as prototyping or quick development.** 
+> **The version 0.8b is still in its beta state. Some attributes are not implemented. The library can be used for basic applications or educational tasks, such as prototyping, testing, learning, research or quick development.** 
 
 ![aloha](doc/noyes.png)
 
@@ -198,17 +198,53 @@ There are several UI-Objects, for working with HTML Form-elements, that can be u
 You can read more about HTML Form Elements and their attributes at [W3CSchools](https://www.w3schools.com/html/html_form_elements.asps)
 
 
+### All basic-element-attributes
+
+Every element has its basic attributes and event-handlers:
+
+> JavaScript:
+
+```javascript 
+UI...({
+    id: "<string>",
+    class: "<string>",
+    name: "<string>",
+    style: "<string>",
+    disabled: "<boolean>"
+})
+```
+
+> HTML:
+
+```html 
+<div id="..." class="Element" name="..." style="color: blue;" disabled=true></div>
+```
+
+#### Generate hashed element Id
+
+```html 
+<div id="<generateId>" class="Element" name="..." style="color: blue;" disabled=true></div>
+```
+
 <br>
 
 ### Button
 
 ![button](doc/uielements/button.png)
 
+> JavaScript:
+
 ```javascript 
 UIButton({
     text: "<string>",
-    type: "<value>"
+    type: "<string>"
 })
+```
+
+> HTML:
+
+```html 
+ <div class="Button">text</div>
 ```
 
 <br>
@@ -216,6 +252,8 @@ UIButton({
 ### Checkbox
 
 ![checkbox](doc/uielements/checkbox.png)
+
+> JavaScript:
 
 ```javascript 
 UICheckbox({
@@ -225,19 +263,33 @@ UICheckbox({
 })
 ```
 
+> HTML:
+
+```html 
+<div class="Checkbox"></div>
+```
+
 <br>
 
 ### DropdownList
 
 ![dropdown](doc/uielements/dropdown.png)
 
+> JavaScript:
+
 ```javascript 
 UIDropdownList({
-    value: "<value>",
+    values: "<array>",
     size: "<number>",
     multiple: "<boolean>",
     selected: "<value>"
 })
+```
+
+> HTML:
+
+```html 
+<div class="DropdownList" values="[item-1, item-2, item-3]"></div>
 ```
 
 <br>
@@ -245,6 +297,8 @@ UIDropdownList({
 ### Label
 
 ![labeltext](doc/uielements/labeltext.png)
+
+> JavaScript:
 
 ```javascript 
 UILabel({
@@ -255,11 +309,19 @@ UILabel({
 })
 ```
 
+> HTML:
+
+```html 
+ <div class="Label">text</div>
+```
+
 <br>
 
 ### RadioButton
 
 ![radiobutton](doc/uielements/radiobutton.png)
+
+> JavaScript:
 
 ```javascript 
 UIRadioButton({
@@ -268,6 +330,14 @@ UIRadioButton({
     value: "<value>",
     checked: "<boolean>"
 })
+```
+
+> HTML:
+
+```html 
+<div class="RadioButton" name="radio-group">A</div>
+<div class="RadioButton" name="radio-group">B</div>
+<div class="RadioButton" name="radio-group">C</div>
 ```
 
 <br>
@@ -286,6 +356,8 @@ UISeperator()
 
 ![slider](doc/uielements/slider.png)
 
+> JavaScript:
+
 ```javascript 
 UISlider({
     value: "<number>",
@@ -295,11 +367,19 @@ UISlider({
 })
 ```
 
+> HTML:
+
+```html 
+<div class="Slider" id="ui-slider" min=0, max=100 value=75 step=1 inline=true></div><div class="Label Value" bind="ui-slider">{value}</div>
+```
+
 <br>
 
 ### TextArea
 
 ![textarea](doc/uielements/textarea.png)
+
+> JavaScript:
 
 ```javascript 
 UITextArea({
@@ -309,12 +389,19 @@ UITextArea({
     placeholder: "<string>"
 })
 ```
+> HTML:
+
+```html 
+<div class="TextArea" rows="5" cols="30" placeholder="Placeholder text" style="resize: none"></div>
+```
 
 <br>
 
 ### TextInput
 
 ![textinput](doc/uielements/textinput.png)
+
+> JavaScript:
 
 ```javascript 
 UITextInput({
@@ -331,6 +418,11 @@ UITextInput({
     size: "<number>"
 })
 ```
+> HTML:
+
+```html 
+<div class="TextInput" placeholder="Type in something"></div>
+```
 
 <br>
 
@@ -346,8 +438,18 @@ Group-objects can be used to group other elemental or group objects and display 
 
 ![group](doc/uielements/group.png)
 
+> JavaScript:
+
 ```javascript 
 UIGroup({ <attributes> })
+```
+
+> HTML:
+
+```html 
+ <div class="Group" inline=true>
+     ...
+ </div>
 ```
 
 <br>
@@ -356,8 +458,18 @@ UIGroup({ <attributes> })
 
 ![tab](doc/uielements/tab.png)
 
+> JavaScript:
+
 ```javascript 
 UITab({ <attributes> })
+```
+
+> HTML:
+
+```html 
+<div class="Tab" title="Tab title">
+    ...          
+</div>
 ```
 
 <br>
@@ -366,11 +478,20 @@ UITab({ <attributes> })
 
 ![form](doc/uielements/form.png)
 
+> JavaScript:
+
 ```javascript 
 UIForm({ <attributes> })
 ```
 The same attributes like in the `HTML <form> Tag`
 
+> HTML:
+
+```html 
+<form class="Form" action="" method="get">
+    ...          
+</form>
+```
 
 Write a container-DIV node with its element-id and its contents and the HTML-attributes:
 
@@ -504,7 +625,7 @@ The related CSS-theme-file can be downloaded as a `*.css` file.
 
 ## Buiding production files
 
-You can build the minfied production `*.js` files with the Node.js builder, if you want to compile the modified source files in the `development/` folder.
+You can build the minified production `*.js` and `*.css` files with the Node.js-builder, if you want to compile the modified source files in the `development/` folder.
 
 ### Node.js Linker and compressor
 
@@ -525,15 +646,12 @@ and run the build program with:
 npm run build
 ```
 
-You can also run the build files to merge other `*.js` files out of the given configuration-files:
+You can also run build files to merge and process other `*.*` files out of the given configuration-files:
 
 ```console
-node build-production-files.js config/ui-form-elements_build-config.json
+node build-production-files.js config/your-own-build-config.json
 ```
 
-```console
-node build-production-files.js config/ui-code-console_build-config.json
-```
 
 <br>
 
@@ -565,14 +683,16 @@ https://caniuse.com/
 
 The **UICodeConsole.js** extension uses the following third-party software components:
 
-> - code-prettify (Apache licence) - https://github.com/googlearchive/code-prettify
+- code-prettify (Apache licence) - https://github.com/googlearchive/code-prettify
 
-> - js-beautify-1.2.0 (MIT licence) - https://github.com/beautifier/js-beautify
+- js-beautify-1.2.0 (MIT licence) - https://github.com/beautifier/js-beautify
 
-> - split-0.1.0 (Custom licence) - https://github.com/nathancahill/split
+- split-0.1.0 (Custom licence) - https://github.com/nathancahill/split
 
-> - Try It Editor Offline (MIT Licence / W3C ToS) - https://github.com/luce80/Try-It-Editor-Offline
+The **UIFormElements.js Live Editor** application uses the following third-party software components:
 
-> - CodeMirror (MIT licence) - https://codemirror.net/
+- Try It Editor Offline (MIT Licence / W3C ToS) - https://github.com/luce80/Try-It-Editor-Offline
+
+- CodeMirror (MIT licence) - https://codemirror.net/
 
 The third-party software licences are in the related folders.

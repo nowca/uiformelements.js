@@ -62,6 +62,8 @@ var UICodeConsole = {
             "onclick",
             "UICodeConsole.getCSSFile()"
         );
+
+        UIFormElements.config.export.injectBindHandler = true;
 	},
 	getCSSFile: function()
 	{

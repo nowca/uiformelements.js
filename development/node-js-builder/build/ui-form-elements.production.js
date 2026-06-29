@@ -11,9 +11,14 @@ var UIFormElements = {
 	VERSION: "0.8b",
 	config: {
 		consoleBanner: true,
+		consoleMessages: true,
 		userselect: true,
 		alwaysInline: false,
 		generateIds: false,
+		export: {
+			injectBindHandler: true,
+			injectScripts: false
+		},
 		extensions: [],
 		theme: "SystemUI",
 		themes: {
@@ -41,6 +46,12 @@ var UIFormElements = {
 		{
 			UIFormElements.config.theme = options.theme;
 			UIFormElements.changeTheme(options.theme);
+		}
+
+		if (options.exportMode != undefined)
+		{
+			UIFormElements.config.export.injectBindHandler = options.exportMode;
+			UIFormElements.config.export.injectScripts = options.exportMode;
 		}
 
 		if (options.extensions != undefined)
@@ -442,7 +453,7 @@ pre,\
 				uiElement = UICustomHTMLElement(constructorOptions);
 			}
 
-			/*if (containsNoUIClass(htmlNode.className) && depth != 0)
+			if (containsNoUIClass(htmlNode.className) && depth != 0)
 			{
 				constructorOptions.text = "";
 
@@ -452,13 +463,13 @@ pre,\
 
 					if (childNode.nodeType == Node.TEXT_NODE)
 					{
-						constructorOptions.text = childNode.textContent;
+						constructorOptions.text += childNode.textContent;
 					}
 				}
 
 				constructorOptions.htmlNode = htmlNode;
 				uiElement = UICustomHTMLElement(constructorOptions);
-			}*/
+			}
 
 			var uiChildElement;
 
@@ -469,7 +480,7 @@ pre,\
 					var subHtmlNode = htmlNode.children[i];
 
 					uiChildElement = UIFormElements._internals.traverseAllChildren(subHtmlNode, depth);
-					
+
 					if
 					(
 						uiElement.type == "UIGroup"
@@ -681,6 +692,11 @@ UIElement.getDefaultAttributeValues = function(instance, options)
 
     instance.hashId = instance.type.replace("UI", "ui-").toLowerCase() + "-" + UIFormElements._internals.pad(instance.instanceNum, 5);
 
+    if (instance.defaultAttributes._id == "{generateId}")
+    {
+        instance.defaultAttributes._id = instance.hashId;
+    }
+
     defaultAttributesValues.uiElementType = instance.type;
     defaultAttributesValues._tagName = options.tagName || instance.defaultAttributes._tagName;
     defaultAttributesValues._id = options.id || instance.defaultAttributes._id || (UIFormElements.config.generateIds == true || instance.defaultAttributes._bind != undefined ? instance.hashId : undefined);
@@ -703,7 +719,7 @@ UIElement.getDefaultAttributeValues = function(instance, options)
     defaultAttributesValues._onselect = options.onselect || instance.defaultAttributes._onselect;
     defaultAttributesValues._onsubmit = options.onsubmit || instance.defaultAttributes._onsubmit;
 
-    if (UIFormElements.config.generateIds == false && instance.defaultAttributes._bind != undefined)
+    if (UIFormElements.config.consoleMessages == true && UIFormElements.config.generateIds == false && instance.defaultAttributes._bind != undefined)
     {
         console.info(instance.type + " is bound to event \"" + instance.defaultAttributes._bind + "\" but has no id. Using generated id " + defaultAttributesValues._id);
     }
@@ -848,7 +864,7 @@ function UILabel(options)
 	    		{
 	    			htmlNode.textContent = attributeValues._text.replace("{value}", bindNode.value);
 
-	    			if (window["UICodeConsole"] == undefined)
+	    			if (UIFormElements.config.export.injectBindHandler == false)
 	    			{
 		    			bindNode.addEventListener(
 				           	"input",
@@ -862,7 +878,7 @@ function UILabel(options)
 		    		{
 		    			if
 		    			(
-		    				UICodeConsole.config.export.injectScripts == true
+		    				UIFormElements.config.export.injectScripts == true
 		    				&& UIFormElements._internals.state.injection.labelBindScript == false
 		    			)
 		    			{
@@ -872,7 +888,7 @@ function UILabel(options)
 		    				UIFormElements._internals.state.injection.labelBindScript = true;
 		    			}
 
-		    			if (UICodeConsole.config.export.injectScripts == true)
+		    			if (UIFormElements.config.export.injectScripts == true)
 		    			{
 		    				bindNode.setAttribute("oninput", "setLabel('" + attributeValues._id + "', '" + bindNode.id + "', '" + attributeValues._text + "')");
 		    			}
@@ -1052,7 +1068,7 @@ function UICustomHTMLElement(options)
 
     	instance.type = "UICustomHTMLElement";
     	instance.defaultAttributes._htmlNode = options.htmlNode || undefined;
-    	instance.defaultAttributes._class = options.class || "CustomHTML" || undefined;
+    	instance.defaultAttributes._class = options.class || undefined;
     	instance.defaultAttributes._tagName = options.tagName || "div";
     	instance.defaultAttributes._text = options.text || undefined;
     	instance.childUIElements = [];

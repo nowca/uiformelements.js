@@ -95,6 +95,11 @@ UIElement.getDefaultAttributeValues = function(instance, options)
 
     instance.hashId = instance.type.replace("UI", "ui-").toLowerCase() + "-" + UIFormElements._internals.pad(instance.instanceNum, 5);
 
+    if (instance.defaultAttributes._id == "{generateId}")
+    {
+        instance.defaultAttributes._id = instance.hashId;
+    }
+
     defaultAttributesValues.uiElementType = instance.type;
     defaultAttributesValues._tagName = options.tagName || instance.defaultAttributes._tagName;
     defaultAttributesValues._id = options.id || instance.defaultAttributes._id || (UIFormElements.config.generateIds == true || instance.defaultAttributes._bind != undefined ? instance.hashId : undefined);
@@ -117,7 +122,7 @@ UIElement.getDefaultAttributeValues = function(instance, options)
     defaultAttributesValues._onselect = options.onselect || instance.defaultAttributes._onselect;
     defaultAttributesValues._onsubmit = options.onsubmit || instance.defaultAttributes._onsubmit;
 
-    if (UIFormElements.config.generateIds == false && instance.defaultAttributes._bind != undefined)
+    if (UIFormElements.config.consoleMessages == true && UIFormElements.config.generateIds == false && instance.defaultAttributes._bind != undefined)
     {
         console.info(instance.type + " is bound to event \"" + instance.defaultAttributes._bind + "\" but has no id. Using generated id " + defaultAttributesValues._id);
     }

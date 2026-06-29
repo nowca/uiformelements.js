@@ -137,6 +137,8 @@ var UICodeConsole = {
             "onclick",
             "UICodeConsole.getCSSFile()"
         );
+
+        UIFormElements.config.export.injectBindHandler = true;
 	},
 	getCSSFile: function()
 	{
@@ -458,6 +460,10 @@ pre,\
     font-family: monospace !important;\
 }\
 \
+#console-code-buttons button {\
+	border-radius: 4px;\
+}\
+\
 .gutter {\
     float: none !important;\
     position: relative;\
@@ -586,7 +592,7 @@ pre,\
 					tagName: "pre",
 					id: "html-code-output-content",
 					class: "prettyprint lang-html linenums",
-					style: "background-color: #ffffff; width: auto; overflow: scroll; position: absolute; top: 20px; bottom: 200px; left: 0; right: 10px; box-shadow: 0px 0px 10px 4px #cccccc inset;",
+					style: "background-color: #eaeaea; width: auto; overflow: scroll; position: absolute; top: 20px; bottom: 200px; left: 0; right: 10px; box-shadow: 0px 0px 10px 4px #cccccc inset;",
 				}),
 				uiConsoleCodeButtons
 			]);

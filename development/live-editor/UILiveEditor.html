@@ -6,18 +6,9 @@
 	<title>UIFormElements.js Live Editor</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/codemirror.css">
-	<script src="js/codemirror.merged.min.js"></script>
-	<script>
-		function $Id(id)
-		{
-			return document.getElementById(id);
-		}
-
-		function $Tag(tag)
-		{
-			return document.getElementsByTagName(tag);
-		}
-	</script>
+	<script src="js/codemirror/codemirror.merged.min.js"></script>
+	<script src="js/js-beautify-1.2.0/beautify-html.js"></script>
+	<script src="js/FileSaver/FileSaver.js"></script>
 	<style>
 		* {
 			-webkit-box-sizing: border-box;
@@ -58,6 +49,10 @@
 			height: 30px;
 			color: #474C58;
 			border-radius: 4px;
+		}
+
+		.hidden {
+			display: none !important;
 		}
 
 		.tool-bar button,
@@ -317,6 +312,675 @@
 		#textareaCode, #iframeResult {height: 450px;}
 	</style>
 	<![endif]-->
+	<style id="themes">
+		html, body {
+    		height: 100%;
+		}
+
+/* System-UI-Colorset */
+
+body.SystemUI {
+    background-color: #F9F9FA;
+}
+
+body.SystemUI * {
+    color: #474C58;
+}
+
+body.SystemUI fieldset {
+    background-color: #EDEDEF;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI input,
+body.SystemUI select,
+body.SystemUI textarea {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI input:focus,
+body.SystemUI select:focus,
+body.SystemUI textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.SystemUI button:enabled,
+body.SystemUI input[type=submit]:enabled  {
+    background-color: #E0E0E2;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI button:hover:enabled,
+body.SystemUI input[type=submit]:hover:enabled {
+    background-color: #D4D4D6 !important;
+}
+
+body.SystemUI button:active:enabled,
+body.SystemUI input[type=submit]:active:enabled {
+    background-color: #E0E8ED !important;
+}
+
+body.SystemUI button:disabled,
+body.SystemUI select:disabled,
+body.SystemUI input:disabled,
+body.SystemUI input[type=submit]:disabled,
+body.SystemUI textarea:disabled {
+    background-color: #F4F4F6;
+    color: #979CA6;
+    border: 1px solid #E0E0E2;
+}
+
+body.SystemUI label[disabled=true],
+body.SystemUI label.disabled {
+    color: #999999;
+}
+
+body.SystemUI .Value,
+body.SystemUI label span,
+body.SystemUI code span,
+body.SystemUI code {
+    color: #3A72C6;
+}
+
+body.SystemUI .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #E0E0E2;
+}
+
+/* System-UI-Dark-Colorset */
+
+body.SystemUIDark {
+    background-color: #22262A;
+}
+
+body.SystemUIDark * {
+    color: #C8C8C8;
+}
+
+body.SystemUIDark fieldset {
+    background-color: #303841;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark input,
+body.SystemUIDark select,
+body.SystemUIDark textarea {
+    background-color: #22262A;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark input:focus,
+body.SystemUIDark select:focus,
+body.SystemUIDark textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.SystemUIDark button:enabled,
+body.SystemUIDark input[type=submit]:enabled  {
+    background-color: #414952;
+    border: 1px solid #414952;
+}
+
+body.SystemUIDark button:hover:enabled,
+body.SystemUIDark input[type=submit]:hover:enabled {
+    background-color: #38404A !important;
+}
+
+body.SystemUIDark button:active:enabled,
+body.SystemUIDark input[type=submit]:active:enabled {
+    background-color: #47586C !important;
+}
+
+body.SystemUIDark button:disabled,
+body.SystemUIDark input:disabled,
+body.SystemUIDark select:disabled,
+body.SystemUIDark input[type=submit]:disabled,
+body.SystemUIDark textarea:disabled,
+body.SystemUIDark select:disabled {
+    background-color: #303841;
+    color: #777777;
+    border: 1px solid #555555;
+}
+
+body.SystemUIDark option:checked {
+    color: #C8C8C8;
+    background-color: #47586C;
+}
+
+body.SystemUIDark select:disabled option {
+    color: #777777;
+}
+
+body.SystemUIDark label[disabled=true],
+body.SystemUIDark label.disabled {
+    color: #777777;
+}
+
+body.SystemUIDark .Value,
+body.SystemUIDark label span,
+body.SystemUIDark code span,
+body.SystemUIDark code {
+    color: #9FB7D9;
+}
+
+body.SystemUIDark .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #414952;
+}
+
+/* Chromium-Colorset */
+
+body.Chromium {
+    background-color: #FAFAFF;
+}
+
+body.Chromium * {
+    color: #474C58;
+}
+
+body.Chromium fieldset {
+    background-color: #EDF2FA;
+    border: 1px solid #E6E6F0;
+}
+
+body.Chromium input,
+body.Chromium select,
+body.Chromium textarea {
+    background-color: #FFFFFF;
+    border: 1px solid #E6E6F0;
+}
+
+body.Chromium input:focus,
+body.Chromium select:focus,
+body.Chromium textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.Chromium button:enabled,
+body.Chromium input[type=submit]:enabled  {
+    background-color: #E1E5ED;
+    border: 1px solid #E1E5ED;
+}
+
+body.Chromium button:hover:enabled,
+body.Chromium input[type=submit]:hover:enabled {
+    background-color: #D4D4D6 !important;
+}
+
+body.Chromium button:active:enabled,
+body.Chromium input[type=submit]:active:enabled {
+    background-color: #E0E8ED !important;
+}
+
+body.Chromium button:disabled,
+body.Chromium input:disabled,
+body.Chromium select:disabled,
+body.Chromium input[type=submit]:disabled,
+body.Chromium textarea:disabled {
+    background-color: #F4F4F6;
+    color: #979CA6;
+    border: 1px solid #E0E0E2;
+}
+
+body.Chromium label[disabled=true],
+body.Chromium label.disabled {
+    color: #999999;
+}
+
+body.Chromium .Value,
+body.Chromium label span,
+body.Chromium code span,
+body.Chromium code {
+    color: #3A72C6;
+}
+
+body.Chromium .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #E0E0E2;
+}
+
+/* Gimp-Colorset */
+
+body.Gimp {
+    background-color: #454545;
+}
+
+body.Gimp * {
+    color: #BEBEBE;
+}
+
+body.Gimp fieldset {
+    background-color: #3B3B3B;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp input,
+body.Gimp select,
+body.Gimp textarea {
+    background-color: #2C2C2C;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp input:focus,
+body.Gimp select:focus,
+body.Gimp textarea:focus {
+    outline: 1px solid #5B5B5B;
+}
+
+body.Gimp button:enabled,
+body.Gimp input[type=submit]:enabled  {
+    background-color: #2C2C2C;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp button:hover:enabled,
+body.Gimp input[type=submit]:hover:enabled {
+    background-color: #323232 !important;
+}
+
+body.Gimp button:active:enabled,
+body.Gimp input[type=submit]:active:enabled {
+    background-color: #1F1F1F !important;
+}
+
+body.Gimp button:disabled,
+body.Gimp select:disabled,
+body.Gimp input:disabled,
+body.Gimp input[type=submit]:disabled,
+body.Gimp input[type=submit][disabled],
+body.Gimp textarea:disabled {
+    background-color: #3B3B3B;
+    color: #979CA6;
+    border: 1px solid #5B5B5B;
+}
+
+body.Gimp label[disabled=true],
+body.Gimp label.disabled {
+    color: #999999;
+}
+
+body.Gimp .Value,
+body.Gimp label span,
+body.Gimp code span,
+body.Gimp code {
+    color: #3A72C6;
+}
+
+body.Gimp .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #5B5B5B;
+}
+
+/* Windows-Classic-Colorset */
+
+body.WindowsClassic {
+    background-color: #C0C0C0;
+}
+
+body.WindowsClassic * {
+    color: #474C58;
+}
+
+body.WindowsClassic fieldset {
+    background-color: #D0D0D0;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic input,
+body.WindowsClassic select,
+body.WindowsClassic textarea {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DCDCDC;
+    border-right: 1px solid #DCDCDC;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+}
+
+body.WindowsClassic input[type=text],
+body.WindowsClassic input[type=password],
+body.WindowsClassic select,
+body.WindowsClassic textarea {
+    box-shadow: inset 1px 1px 0 #808080;
+}
+
+body.WindowsClassic input:focus,
+body.WindowsClassic select:focus,
+body.WindowsClassic textarea:focus {
+    outline: 0;
+}
+
+body.WindowsClassic button:enabled,
+body.WindowsClassic input[type=submit]:enabled  {
+    background-color: #C0C0C0;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic button:active:enabled,
+body.WindowsClassic input[type=submit]:active:enabled {
+    background-color: #C0C0C0;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+    box-shadow: inset 1px 1px 0 #808080;
+
+}
+
+body.WindowsClassic button:disabled,
+body.WindowsClassic button[disabled] {
+    background-color: #C0C0C0;
+    color: #979CA6;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic select:disabled,
+body.WindowsClassic input[type=text]:disabled,
+body.WindowsClassic input[type=password]:disabled,
+body.WindowsClassic input[type=submit]:disabled,
+body.WindowsClassic textarea:disabled {
+    background-color: #C0C0C0;
+    color: #979CA6;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    border-left: 1px solid #181818;
+    border-top: 1px solid #181818;
+    box-shadow: inset -1px -1px 0 #808080;
+}
+
+body.WindowsClassic label[disabled=true],
+body.WindowsClassic label.disabled {
+    color: #999999;
+}
+
+body.WindowsClassic .Value,
+body.WindowsClassic label span,
+body.WindowsClassic code span,
+body.WindowsClassic code {
+    color: #3A72C6;
+}
+
+body.WindowsClassic .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #E0E0E2;
+    box-shadow: 0 -1px 0 #888888;
+}
+
+/* Deep-Blue-Colorset */
+
+body.DeepBlue {
+    background: #203047;
+    background: linear-gradient(0deg,rgba(32, 48, 71, 1) 0%, rgba(13, 20, 29, 1) 100%);
+}
+
+body.DeepBlue * {
+    color: #9FC2DB;
+}
+
+body.DeepBlue fieldset {
+    border-radius: 4px;
+    background-color: rgba(35, 55, 85, 0.5);
+    border: 1px solid #3C506E;
+    box-shadow: 0px 0px 8px 4px #223655;
+    transition: all 0.25s ease-in-out;
+}
+
+body.DeepBlue fieldset:hover {
+    color: #fff;
+    background-color: rgba(55, 75, 110, 0.5);
+    border: 1px solid #4D7998;
+    box-shadow: 0px 0px 8px 4px #3A5271, inset 0px 0px 8px 4px #3A5271;
+}
+
+body.DeepBlue fieldset:hover legend {
+    color: #fff;
+}
+
+body.DeepBlue fieldset:hover label:not(label[disabled=true]) {
+    color: #DDFFFF;
+}
+
+body.DeepBlue input,
+body.DeepBlue select,
+body.DeepBlue textarea {
+    border-radius: 4px;
+    background-color: rgba(20, 30, 50, 0.5);
+    border: 1px solid #3C506E;
+    transition: all 0.1s ease-in-out;
+}
+
+body.DeepBlue input:hover:not(input[disabled=true]):not(input[type=range]),
+body.DeepBlue select:hover,
+body.DeepBlue textarea:hover {
+    background-color: rgba(30, 40, 60, 0.5);
+    border: 1px solid #8DB0C8;
+    box-shadow: 0px 0px 8px 4px #3A5271;
+}
+
+
+body.DeepBlue input:focus,
+body.DeepBlue select:focus,
+body.DeepBlue textarea:focus {
+    outline: 1px solid #A0C2FF;
+}
+
+body.DeepBlue button {
+    border-radius: 4px;
+}
+
+body.DeepBlue button:enabled,
+body.DeepBlue input[type=submit]:enabled  {
+    background-color: rgba(55, 75, 110, 0.5);
+    border: 1px solid #3C506E;
+}
+
+body.DeepBlue button:hover:enabled,
+body.DeepBlue input[type=submit]:hover:enabled {
+    background-color: #566D8A !important;
+    color: #FFFFFF;
+    border: 1px solid #A9C9E0;
+    box-shadow: 0px 0px 8px 4px #566D8A, inset 0px 0px 8px 4px #8CAABF;
+}
+
+body.DeepBlue button:active:enabled,
+body.DeepBlue input[type=submit]:active:enabled {
+    background-color: #405C80 !important;
+    color: #A9C9E0;
+}
+
+body.DeepBlue button:disabled,
+body.DeepBlue input:disabled,
+body.DeepBlue select:disabled,
+body.DeepBlue input[type=submit]:disabled,
+body.DeepBlue textarea:disabled,
+body.DeepBlue select:disabled {
+    background-color: #223655;
+    color: #678CA7;
+    border: 1px solid #678CA7;
+}
+
+body.DeepBlue option {
+    background-color: #162135;
+}
+
+body.DeepBlue option:checked {
+    color: #C8C8C8;
+    background-color: #47586C;
+}
+
+body.DeepBlue select:disabled option {
+    color: #777777;
+}
+
+body.DeepBlue label[disabled=true],
+body.DeepBlue label.disabled {
+    color: #678CA7;
+}
+
+body.DeepBlue .Value,
+body.DeepBlue label span,
+body.DeepBlue code span,
+body.DeepBlue code {
+    color: #9FB7D9;
+}
+
+body.DeepBlue .Seperator {
+    border-bottom: 1px solid #aaaaaa;
+    border-color: #3C506E;
+}
+
+body.DeepBlue ::placeholder {
+    color: #3D4F6D;
+}
+
+body.DeepBlue ::-ms-input-placeholder { /* Edge 12 -18 */
+    color: #3D4F6D;
+}
+
+/* Terminal */
+
+body.Terminal {
+    background-color: #111111;
+
+}
+
+body.Terminal * {
+    color: #BEBEBE;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 11.5px;
+}
+
+body.Terminal fieldset {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal input,
+body.Terminal select,
+body.Terminal textarea {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal input[type=range] {
+    color: #555555;
+    -webkit-appearance: none;
+    background-color: #000000;
+}
+
+body.Terminal input[type='range']::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #888888;
+}
+
+body.Terminal input:focus,
+body.Terminal select:focus,
+body.Terminal textarea:focus {
+    outline: 0px solid #5B5B5B;
+}
+
+body.Terminal button:enabled,
+body.Terminal input[type=submit]:enabled  {
+    background-color: #111111;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal button:hover:enabled,
+body.Terminal input[type=submit]:hover:enabled {
+    background-color: #222222 !important;
+}
+
+body.Terminal button:active:enabled,
+body.Terminal input[type=submit]:active:enabled {
+    background-color: #333333 !important;
+}
+
+body.Terminal button:disabled,
+body.Terminal input:disabled,
+body.Terminal input[type=submit]:disabled,
+body.Terminal textarea:disabled {
+    background-color: #3B3B3B;
+    color: #979CA6;
+    border: 2px solid #5B5B5B;
+}
+
+body.Terminal label[disabled=true],
+body.Terminal label.disabled {
+    color: #999999;
+}
+
+body.Terminal .Value,
+body.Terminal label span,
+body.Terminal code span,
+body.Terminal code {
+    color: #3A72C6;
+}
+
+body.Terminal .Seperator {
+    border-bottom: 2px solid #aaaaaa;
+    border-color: #E0E0E2;
+}
+
+/* Terminal: Code Console Override */
+
+body.Terminal {
+    scrollbar-width: 16px !important;
+}
+
+body.Terminal .CodeOutputActive {
+    margin: 4px;
+    padding: 8px;
+}
+
+body.Terminal #html-code-output-content,
+body.Terminal #html-code-output-content * {
+    background-color: #111111 !important;
+    box-shadow: none !important;
+}
+
+body.Terminal #html-code-output-content {
+    border: 0 !important;
+    padding: 8px !important;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar {
+    height: 20px;
+    width: 20px;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar-track {
+    background-color: #111111;
+}
+
+body.Terminal #html-code-output-content::-webkit-scrollbar-thumb {
+    background-color: #555555;
+    border-radius: 0;
+    border: 3px solid #111111;
+}
+
+/* Custom */
+
+/* you can use this file to play around with your own custom theme */
+
+body.Custom {
+    background-color: #F3EDDE;
+}
+	</style>
 </head>
 <body>
 <div id="shield"></div>
@@ -325,9 +989,9 @@
 	<div id="textareacontainer">
 		<div id="top-bar-title">UIFormElements.js Live Editor</div>
 		<ul class="bar-element right">
-			<li><button class="right" style="right: 86px;" onclick="UILiveEditor.undo()">Undo</button></li>
+			<li><button id="undo" class="right" style="right: 86px;" onclick="UILiveEditor.undo()">Undo</button></li>
 			<li class="seperator"></li>
-			<li><button class="right" style="" onclick="submitTryit(1)">Run &raquo;</button></li>
+			<li><button id="run" class="right" style="" onclick="submitTryit(1)">Run &raquo;</button></li>
 		</ul>
 		<ul class="bar-element tool-bar">
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.group, 31, true)'>Group</button></li>
@@ -336,7 +1000,7 @@
 			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.button, 20)'>Button</button></li>
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.checkbox, 22)'>Checkbox</button></li>
-			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.dropdownlist, 57)'>DropdownList</button></li>
+			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.dropdownlist, 60)'>DropdownList</button></li>
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.label, 19)'>Label</button></li>
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.radiobutton, 44)'>RadioButton</button></li>
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.seperator, 29)'>Seperator</button></li>
@@ -348,8 +1012,7 @@
 			<li><label for="checkbox-cursor" class="Checkbox"><input type="checkbox" id="checkbox-cursor" checked><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Set the cursor at text-content</span></label>
 			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
 			<li><label for="checkbox-add-id" class="Checkbox"><input type="checkbox" id="checkbox-add-id"><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Add id-attribute</span></label></li>
-			<li><label for="checkbox-add-text" class="Checkbox"><input type="checkbox" id="checkbox-add-id"><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Add text-string</span></label></li>
-			<li><label for="checkbox-no-inline" class="Checkbox"><input type="checkbox" id="checkbox-no-inline"><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Set no inline</span></label></li>
+			<li><label for="checkbox-no-inline" class="Checkbox"><input type="checkbox" id="checkbox-no-inline"><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Set inline=false</span></label></li>
 			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
 			<li><label for="checkbox-slider-label" class="Checkbox"><input type="checkbox" id="checkbox-slider-label" checked><span style="display: inline-block;width: 85px;vertical-align: top;margin-left: 4px;">Slider with label</span>
 			<li style="height: 0px; border-bottom: 1px solid #888888;"></li>
@@ -419,13 +1082,13 @@
 </html>
 		</textarea>
 		<ul class="bar-element bottom-bar">
-			<li><button onclick="loadFile()">Load HTML-File</button></li>
+			<li><button id="load-html-file" onclick="loadFile()">Load HTML-File</button></li>
 			<li class="seperator"></li>
-			<li><input id="filename" value="./example/live-editor-example.html"></input></li>
+			<li><input id="filename" value="No file loaded." disabled></input></li>
 			<li class="seperator"></li>
-			<li><button style="margin-right: 10px;" onclick="UILiveEditor.loadEmptyHTMLFile()">Load empty HTML-Template</button></li>
-			<li><button style="margin-right: 10px;" onclick="UILiveEditor.loadFormExamples()">Load example</button></li>
-			<li><button onclick="UILiveEditor.clearAll()">Clear all</button></li>
+			<li><button id="load-html-template" style="margin-right: 10px;" onclick="UILiveEditor.loadEmptyHTMLFile()">Load empty HTML-Template</button></li>
+			<li><button  id="load-html-example" style="margin-right: 10px;" onclick="UILiveEditor.loadFormExamples()">Load example</button></li>
+			<li><button  id="clear-all" onclick="UILiveEditor.clearAll()">Clear all</button></li>
 		</ul>
 	</div>
 	<div id="dragbar"><div></div></div>
@@ -434,25 +1097,45 @@
 			<li id="document-title"></li>
 			<li id="theme">Theme: <select id="theme-selection" class="DropdownList" style="display: inline-block; height: 32px;" onchange="UILiveEditor.setTheme(this.value)"><option value="None">None</option><option value="SystemUI" selected>System-UI</option><option value="SystemUIDark">System-UI-Dark</option><option value="Chromium">Chromium</option><option value="Gimp">Gimp</option><option value="WindowsClassic">Windows-Classic</option><option value="DeepBlue">Deep-Blue</option><option value="Terminal">Terminal</option><option value="Custom">Custom</option></select></li>
 			<li class="seperator"></li>
-			<li><button onclick="UILiveEditor.setSize(-0.1)" style="width: 32px; margin-left: 10px;">-</button></li>
-			<li><button onclick="UILiveEditor.setSize(0.1)" style="width: 32px; margin-left: 10px;">+</button></li>
-			<li><button onclick="UILiveEditor.setSize(0)" style="margin-left: 10px;">Reset</button></li>
+			<li><button id="zoom-minus" onclick="UILiveEditor.setSize(-0.1)" style="width: 32px; margin-left: 10px;">-</button></li>
+			<li><button id="zoom-plus" onclick="UILiveEditor.setSize(0.1)" style="width: 32px; margin-left: 10px;">+</button></li>
+			<li><button id="reset" onclick="UILiveEditor.setSize(0)" style="margin-left: 10px;">Reset</button></li>
+			<li class="right" style="position: absolute; right: 10px;"><button id="about" onclick="UILiveEditor.aboutDialog()">About</button></li>
 		</ul>
 		<div id="iframe-subcontainer">
 			<iframe id="iframeResult"></iframe>
 		</div>
 		<ul class="bar-element bottom-bar">
-			<li><button>Export HTML-File</button></li>
-			<li class="right" style="position: absolute; right: 10px;"><button onclick="UILiveEditor.aboutDialog()">About</button></li>
+			<li><button onclick="UILiveEditor.exportHTMLFile()">Export HTML-File</button></li>
+			
 		</ul>
 	</div>
 </div>
 <script>
+	function $Id(id)
+	{
+		return document.getElementById(id);
+	}
+
+	function $Tag(tag)
+	{
+		return document.getElementsByTagName(tag);
+	}
+
 	var UILiveEditor = {
 		VERSION: "0.6b",
+		config: {
+			liveReload: true,
+			cursorAtTextPos: true,
+			addIdAttribute: false,
+			setNoInline: false,
+			sliderWithLabel: true,
+			initEmptyTemplate: false
+		},
 		document: {
 			title: "<no document title>",
-			zoomLevel: 1
+			zoomLevel: 1,
+			cursorOffset: 0
 		},
 		uiElementTemplates: {
 			group: '<div class="Group" inline=true></div>',
@@ -464,7 +1147,8 @@
 			label: '<div class="Label"></div>',
 			radiobutton: '<div class="RadioButton" name="radio-group"></div>',
 			seperator: '<div class="Seperator"></div>',
-			slider: '<div class="Slider" id="ui-slider" min=0, max=100 value=75 step=1 inline=true></div><div class="Label Value" bind="ui-slider">{value}</div>',
+			slider: '<div class="Slider" id="ui-slider" min=0, max=100 value=75 step=1 inline=true></div>',
+			sliderLabel: '<div class="Label Value" bind="ui-slider">{value}</div>',
 			textarea: '<div class="TextArea" rows="5" cols="30" placeholder="Placeholder text" style="resize: none"></div>',
 			textinput: '<div class="TextInput" placeholder="Type in something"></div>'
 		},
@@ -503,8 +1187,7 @@
         );\n\
     <\/script>\n\
 </body>\n\
-</html>',
-				cursorPos: 20
+</html>'
 			},
 			example: {
 				text: '<!DOCTYPE html>\n\
@@ -571,6 +1254,82 @@
 </html>'
 			}
 		},
+		init: function()
+		{
+			UILiveEditor.setMenuItemDisplay();
+
+			$Id("checkbox-live").addEventListener("click", function(value)
+			{
+				UILiveEditor.config.liveReload = value.target.checked;
+				localStorage.setItem("liveReload", UILiveEditor.config.liveReload);
+			});
+
+			$Id("checkbox-cursor").addEventListener("click", function(value)
+			{
+				UILiveEditor.config.cursorAtTextPos = value.target.checked;
+				localStorage.setItem("cursorAtTextPos", UILiveEditor.config.cursorAtTextPos);
+			});
+
+			$Id("checkbox-add-id").addEventListener("click", function(value)
+			{
+				UILiveEditor.config.addIdAttribute = value.target.checked;
+				localStorage.setItem("addIdAttribute", UILiveEditor.config.addIdAttribute);
+				UILiveEditor.document.cursorOffset += UILiveEditor.config.addIdAttribute == true ? 18 : UILiveEditor.document.cursorOffset > 0 ? -18 : 0;
+			});
+
+			$Id("checkbox-no-inline").addEventListener("click", function(value)
+			{
+				UILiveEditor.config.setNoInline = value.target.checked;
+				localStorage.setItem("setNoInline", UILiveEditor.config.setNoInline);
+				UILiveEditor.document.cursorOffset += UILiveEditor.config.setNoInline == true ? 13 : UILiveEditor.document.cursorOffset > 0 ? -13 : 0;
+			});
+
+			$Id("checkbox-slider-label").addEventListener("click", function(value)
+			{
+				UILiveEditor.config.sliderWithLabel = value.target.checked;
+				localStorage.setItem("sliderWithLabel", UILiveEditor.config.sliderWithLabel);
+			});
+
+			$Id("checkbox-start-empty").addEventListener("click", function(value)
+			{
+				UILiveEditor.config.initEmptyTemplate = value.target.checked;
+				localStorage.setItem("initEmptyTemplate", UILiveEditor.config.initEmptyTemplate);
+			});
+
+			UILiveEditor.config.liveReload = localStorage.getItem("liveReload") != undefined ? ((localStorage.getItem("liveReload")  === "true")) : true;
+			document.getElementById("checkbox-live").checked = UILiveEditor.config.liveReload;
+
+			UILiveEditor.config.cursorAtTextPos = localStorage.getItem("cursorAtTextPos") != undefined ? ((localStorage.getItem("cursorAtTextPos")  === "true")) : true;
+			document.getElementById("checkbox-cursor").checked = UILiveEditor.config.cursorAtTextPos;
+
+			UILiveEditor.config.addIdAttribute = localStorage.getItem("addIdAttribute") != undefined ? ((localStorage.getItem("addIdAttribute")  === "true")) : false;
+			document.getElementById("checkbox-add-id").checked = UILiveEditor.config.addIdAttribute;
+
+			UILiveEditor.config.setNoInline = localStorage.getItem("setNoInline") != undefined ? ((localStorage.getItem("setNoInline")  === "true")) : false;
+			document.getElementById("checkbox-no-inline").checked = UILiveEditor.config.setNoInline;
+
+			UILiveEditor.config.sliderWithLabel = localStorage.getItem("sliderWithLabel") != undefined ? ((localStorage.getItem("sliderWithLabel")  === "true")) : true;
+			document.getElementById("checkbox-slider-label").checked = UILiveEditor.config.sliderWithLabel;
+
+			UILiveEditor.config.initEmptyTemplate = localStorage.getItem("initEmptyTemplate") != undefined ? ((localStorage.getItem("initEmptyTemplate")  === "true")) : false;
+			document.getElementById("checkbox-start-empty").checked = UILiveEditor.config.initEmptyTemplate;
+
+			UILiveEditor.document.cursorOffset += UILiveEditor.config.addIdAttribute == true ? 18 : UILiveEditor.document.cursorOffset > 0 ? -18 : 0;
+			UILiveEditor.document.cursorOffset += UILiveEditor.config.setNoInline == true ? 13 : UILiveEditor.document.cursorOffset > 0 ? -13 : 0;
+
+			submitTryit();
+
+			if (UILiveEditor.config.initEmptyTemplate == true)
+			{
+				UILiveEditor.loadEmptyHTMLFile(true);
+			}
+
+			if (UILiveEditor.getLocationType() == 0)
+			{
+				$Id("load-html-file").disabled = true;
+				$Id("filename").value = "Local file-loading disabled. Use http server mode.";
+			}
+		},
 		getLocationType: function()
 		{
 		    if (window.location.protocol == 'file:')
@@ -593,27 +1352,70 @@
 			input.setAttribute("accept", "text/html");
 			input.onchange = function (event)
 			{
-			    console.log(this.files);
+			    var file = this.files[0];
+			    $Id("filename").value = file.name;
+
+			    if (file.name)
+			    {
+			        var reader = new FileReader();
+
+			        reader.onload = function()
+			        {
+			            window.editor.getDoc().setValue(reader.result);
+						submitTryit(1);
+			        };
+
+			        reader.readAsText(file);    
+			    }
+			    else
+			    {
+			        alert("File not supported, .txt or .json files only");
+			    }
+
 			};
 			input.click();
 		},
 		insertToCodeMirror: function(text, cursorPos, group)
 		{
+			cursorPos = UILiveEditor.config.cursorAtTextPos == true ? cursorPos : undefined;
+
+			if (UILiveEditor.config.sliderWithLabel == true && text == UILiveEditor.uiElementTemplates.slider)
+			{
+				text += UILiveEditor.uiElementTemplates.sliderLabel;
+			}
+
+			var isSliderClass = (text.indexOf("Slider") != -1);
+
+			if (isSliderClass == false && UILiveEditor.config.addIdAttribute == true)
+			{
+				text = text.replace("class", 'id="{generateId}" class');
+			}
+
+			var isGroupClass = (text.indexOf("Group") != -1);
+
+			if (isGroupClass == false && UILiveEditor.config.setNoInline == true)
+			{
+				text = text.replace("></", ' inline=false></');
+			}
+
+			if (isGroupClass == true && UILiveEditor.config.setNoInline == true)
+			{
+				text = text.replace("inline=true", 'inline=false');
+			}
+
 			var doc = window.editor.getDoc();
 			var cursor = window.editor.getCursor();
 			doc.replaceRange(text, cursor);
 			window.editor.focus();
-			var length = cursorPos != undefined ? cursorPos : text.length
+			var length = cursorPos != undefined ? cursorPos + ((isGroupClass == true && UILiveEditor.config.setNoInline == true) ? UILiveEditor.document.cursorOffset - 12 : UILiveEditor.document.cursorOffset) : text.length
 			cursor.ch += length;
 			window.editor.setCursor(cursor);
 			
-			if (group != undefined)
+			if (UILiveEditor.config.cursorAtTextPos == true && group != undefined)
 			{
 				var token = window.editor.getTokenAt(window.editor.getCursor());
 				var indentationLevel = token.state.htmlState.indented;
 				var identationString = "";
-
-				
 
 				for (var i = 0; i < indentationLevel; i++)
 				{
@@ -628,11 +1430,11 @@
 			
 			submitTryit(1);
 		},
-		loadEmptyHTMLFile: function()
+		loadEmptyHTMLFile: function(noprompt)
 		{
 			var infoText = "Do you want to load a empty HTML template?";
 
-			if (confirm(infoText) == true)
+			if (noprompt == true || confirm(infoText) == true)
 			{
 				window.editor.getDoc().setValue(UILiveEditor.htmlTemplates.empty.text);
 				var cursor = window.editor.getCursor();
@@ -670,6 +1472,46 @@
 				window.editor.getDoc().setValue("");
 				submitTryit(1);
 			}
+		},
+		exportHTMLFile: function()
+		{
+			var themes = $Id("themes")
+			var selectedThemeName = $Id("theme-selection").options[$Id("theme-selection").selectedIndex].text;
+			var re = new RegExp("/.* " + selectedThemeName + "-Colorset .*/[^]*?/", "gmi");
+			var arr = themes.textContent.match(re);
+			var cssStyle = arr[0].replace("}\n\n/", "}");
+			var source =  $Id("iframeResult").contentDocument.documentElement.outerHTML;
+			source = source.replace("</head>", "\n<style>\n" + cssStyle + "</style>\n</head>");
+			var fileName = $Id("document-title").textContent.replace(/[/\\?%*:|"<>\.\s]/g, '-').toLowerCase();
+			source = style_html(source, {});
+			source = source.replace('<!-- UIFormElements.js -->\n\
+        <script src="js/ui-form-elements.production.min.js"><\/script>\n\
+        <!-- UIFormElements.js CSS-Themes: -->\n\
+        <link rel="stylesheet" href="css/ui-form-elements.themes.css">', '').replace('<script>\n\
+            UIFormElements.setConfig({\n\
+                userselect: false,\n\
+                exportMode: true,\n\
+                theme: "SystemUI"\n\
+            });\n\
+    \n\
+            UIFormElements.init(\n\
+                "main-container",\n\
+                document.getElementById("parentRootNode")\n\
+            );\n\
+        <\/script>', '');
+
+        	var scriptInjection = '<script>\n\
+	function setLabel(labelId, bindNodeId, text) { document.getElementById(labelId).textContent = text.replace("{value}", document.getElementById(bindNodeId).value); }\n\
+<\/script>';
+
+			var blob = new Blob([source], {type: 'text/plain'});
+	        var url = URL.createObjectURL(blob);
+	        var link = document.createElement('a');
+	        link.href = url;
+	        link.download = fileName + "-" + new Date().toISOString().replace(/:/g, "-").replace(/\./g, "-") + ".html";
+	        document.body.appendChild(link);
+	        link.click();
+	        document.body.removeChild(link);
 		},
 		setTheme: function(value)
 		{
@@ -714,10 +1556,107 @@
 				text = window.editor.getDoc().getValue("\n");
 			}
 
+			/*
+			input[type=checkbox], input[type=radio] {
+			width: 3.1rem; 
+			height: 3.1rem; 
+		}
+		*/
+
 			text = text.replace(/.*\n.*body \*[\s\S\{]*?\}\n/m, "");
 			text = value != 0 ? text.replace(/<\/style>/g, "\n        body * {\n            font-size: " + UILiveEditor.document.zoomLevel.toFixed(1) + "rem;\n        }\n    </style>") : text;
 			window.editor.getDoc().setValue(text);
 			submitTryit(1);
+		},
+		setMenuItemDisplay: function()
+		{
+			var frameWidthLeft = document.getElementsByClassName("bottom-bar")[0].offsetWidth;
+			var frameWidthRight = document.getElementsByClassName("bottom-bar")[1].offsetWidth;
+
+			if (frameWidthLeft < 815)
+			{
+				document.getElementById("filename").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("filename").classList.remove("hidden");
+			}
+
+			if (frameWidthLeft < 525)
+			{
+				document.getElementById("clear-all").classList.add("hidden");
+				document.getElementById("undo").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("clear-all").classList.remove("hidden");
+				document.getElementById("undo").classList.remove("hidden");
+			}
+
+			if (frameWidthLeft < 455)
+			{
+				document.getElementById("load-html-example").classList.add("hidden");
+				document.getElementById("run").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("load-html-example").classList.remove("hidden");
+				document.getElementById("run").classList.remove("hidden");
+			}
+
+			if (frameWidthLeft < 355)
+			{
+				document.getElementById("load-html-template").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("load-html-template").classList.remove("hidden");
+			}
+
+			if (frameWidthRight < 810)
+			{
+				document.getElementById("reset").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("reset").classList.remove("hidden");
+			}
+
+			if (frameWidthRight < 755)
+			{
+				document.getElementById("zoom-plus").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("zoom-plus").classList.remove("hidden");
+			}
+
+			if (frameWidthRight < 710)
+			{
+				document.getElementById("zoom-minus").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("zoom-minus").classList.remove("hidden");
+			}
+
+			if (frameWidthRight < 640)
+			{
+				document.getElementById("theme").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("theme").classList.remove("hidden");
+			}
+
+			if (frameWidthRight < 430)
+			{
+				document.getElementById("about").classList.add("hidden");
+			}
+			else
+			{
+				document.getElementById("about").classList.remove("hidden");
+			}
 		},
 		aboutDialog: function()
 		{
@@ -734,16 +1673,14 @@
 
 			document.body.parentNode.style = "filter: blur(16px);";
 			setTimeout(function() {
-				alert("UIFormElements.js v" + UIFormElements.VERSION + "\n\n\
+				alert("UIFormElements.js v" + UIFormElements.VERSION + "\n\
 Legacy-compatible HTML Form toolkit\n\n\
 Copyright 2026 Jonathan Nowca - License: CC BY-NC-SA \n\n\
-Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luce80\n\n");
+Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luce80\nLicenced with CodeMirror under MIT licence and W3C ToS\n");
 				document.body.parentNode.style = "";
 			}, 100);
 		}
 	}
-
-	submitTryit()
 
 	function submitTryit(n) {
 		if (window.editor)
@@ -758,7 +1695,8 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 			text = window.editor.getDoc().getValue("\n");
 		}
 		text = text.replace(/\n\n\n/g,"\n\n"); // normalize newlines (??!!)
-		
+		text = text.replace("userselect: false", "userselect: false,\n            exportMode: true");
+
 		var ifc = $Id("iframecontainer");
 		var ifr = $Id("iframeResult");
 		var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
@@ -774,7 +1712,6 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 		}
 
 		var themeSelector = $Id("theme-selection");
-
 		if (themeSelector != undefined)
 		{
 			UILiveEditor.setTheme(themeSelector.value);
@@ -862,6 +1799,8 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 					balancer.previousElementSibling.style[axe2] = "calc(" + (perc) + "% - " + (balancer[axe1] / 2) + "px)";
 					balancer.nextElementSibling.style[axe2] = "calc(" + (100 - perc) + "% - " + (balancer[axe1] / 2) + "px)";
 				}
+
+				UILiveEditor.setMenuItemDisplay();
 			}
 		}
 		function dragend() {
@@ -884,7 +1823,13 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 
 	if (window.addEventListener)
 	{
-		$Id("textareacontainer").addEventListener("keyup", function(e) { keypressed(e); });
+		$Id("textareacontainer").addEventListener("keyup", function(e)
+		{
+			if (UILiveEditor.config.liveReload == true)
+			{
+				keypressed(e);
+			}
+		});
 	}
 
 	frameWindow().addEventListener("keyup", keypressedinframe);
@@ -926,37 +1871,6 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 	
 	function loadFile() {
 		UILiveEditor.openFile()
-
-		var name = $Id("filename").value;
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', name);
-		xhr.onreadystatechange = function()
-		{
-			if (xhr.readyState == XMLHttpRequest.DONE)
-			{
-				if (xhr.status === 200)
-				{
-					if (window.editor)
-					{
-						var ifr = $Id("iframeResult");
-						var sourceText = xhr.responseText;
-						sourceText = sourceText.replace("</head>", '    <!-- UIFormElements.js -->\n    <script src="js/ui-form-elements.production.min.js"><\/script>\n<\/head>');
-						sourceText = sourceText.replace("</head>", '    <!-- UIFormElements.js CSS-Themes: -->\n    <link rel="stylesheet" href="css/ui-form-elements.themes.css">\n<\/head>');
-						window.editor.getDoc().setValue(sourceText);
-						submitTryit(1);
-					}
-		        }
-		        else
-		        {
-		           	console.error(xhr.statusText);
-		        }
-			}
-		}
-		xhr.onerror = function(error)
-		{
-			console.error(error);
-		}
-		xhr.send();
 	}
 
 	function getName() {
@@ -983,8 +1897,9 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 		submitTryit();
 		reEdited();
 	}
+
+	UILiveEditor.init();
 </script>
-<script src="js/FileSaver.js"></script>
 <script>
 	/* alert before leaving page */
 	window.addEventListener(
@@ -993,7 +1908,6 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 		{
 			var confirmationMessage = 'You have unsaved changes.'
 									+ 'Are you sure?';
-
 			(e || window.event).returnValue = confirmationMessage; //Gecko + IE
 			return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
 		}

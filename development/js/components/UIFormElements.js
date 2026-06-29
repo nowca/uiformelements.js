@@ -10,11 +10,15 @@
 var UIFormElements = {
 	VERSION: "0.8b",
 	config: {
-		consoleBanner: true,
-		consoleMessages: true,
+		consoleBanner: false,
+		consoleMessages: false,
 		userselect: true,
 		alwaysInline: false,
 		generateIds: false,
+		export: {
+			injectBindHandler: true,
+			injectScripts: false
+		},
 		extensions: [],
 		theme: "SystemUI",
 		themes: {
@@ -42,6 +46,12 @@ var UIFormElements = {
 		{
 			UIFormElements.config.theme = options.theme;
 			UIFormElements.changeTheme(options.theme);
+		}
+
+		if (options.exportMode != undefined)
+		{
+			UIFormElements.config.export.injectBindHandler = options.exportMode;
+			UIFormElements.config.export.injectScripts = options.exportMode;
 		}
 
 		if (options.extensions != undefined)
@@ -443,7 +453,7 @@ pre,\
 				uiElement = UICustomHTMLElement(constructorOptions);
 			}
 
-			/*if (containsNoUIClass(htmlNode.className) && depth != 0)
+			if (containsNoUIClass(htmlNode.className) && depth != 0)
 			{
 				constructorOptions.text = "";
 
@@ -453,13 +463,13 @@ pre,\
 
 					if (childNode.nodeType == Node.TEXT_NODE)
 					{
-						constructorOptions.text = childNode.textContent;
+						constructorOptions.text += childNode.textContent;
 					}
 				}
 
 				constructorOptions.htmlNode = htmlNode;
 				uiElement = UICustomHTMLElement(constructorOptions);
-			}*/
+			}
 
 			var uiChildElement;
 
@@ -470,7 +480,7 @@ pre,\
 					var subHtmlNode = htmlNode.children[i];
 
 					uiChildElement = UIFormElements._internals.traverseAllChildren(subHtmlNode, depth);
-					
+
 					if
 					(
 						uiElement.type == "UIGroup"

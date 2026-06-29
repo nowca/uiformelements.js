@@ -32,7 +32,7 @@ function UILabel(options)
 	    		{
 	    			htmlNode.textContent = attributeValues._text.replace("{value}", bindNode.value);
 
-	    			if (window["UICodeConsole"] == undefined)
+	    			if (UIFormElements.config.export.injectBindHandler == false)
 	    			{
 		    			bindNode.addEventListener(
 				           	"input",
@@ -46,7 +46,7 @@ function UILabel(options)
 		    		{
 		    			if
 		    			(
-		    				UICodeConsole.config.export.injectScripts == true
+		    				UIFormElements.config.export.injectScripts == true
 		    				&& UIFormElements._internals.state.injection.labelBindScript == false
 		    			)
 		    			{
@@ -56,7 +56,7 @@ function UILabel(options)
 		    				UIFormElements._internals.state.injection.labelBindScript = true;
 		    			}
 
-		    			if (UICodeConsole.config.export.injectScripts == true)
+		    			if (UIFormElements.config.export.injectScripts == true)
 		    			{
 		    				bindNode.setAttribute("oninput", "setLabel('" + attributeValues._id + "', '" + bindNode.id + "', '" + attributeValues._text + "')");
 		    			}

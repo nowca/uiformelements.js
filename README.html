@@ -1246,13 +1246,13 @@ body .markdown-body
 }
 </style><title>README</title></head><body data-theme="auto"><article class="markdown-body"><h1 id="uiformelementsjs">UIFormElements.js<a class="headerlink" href="#uiformelementsjs" title="Permanent link"></a></h1>
 <blockquote>
-<p><strong>The version 0.8b is in its beta state. Some attributes are not implemented. The library can be used for basic applications and tasks, such as prototyping or quick development.</strong> </p>
+<p><strong>The version 0.8b is still in its beta state. Some attributes are not implemented. The library can be used for basic applications or educational tasks, such as prototyping, testing, learning, research or quick development.</strong> </p>
 </blockquote>
-<p><img alt="aloha" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/noyes.png" /></p>
+<p><img alt="aloha" src="doc/noyes.png" /></p>
 <p><strong>This is a legacy-compatible HTML Form toolkit for prototyping or web-applications with simple form-elements.</strong></p>
 <p>It is sucessfully tested with Firefox 25 and Chromium 70 on Linux x64.</p>
 <p><br></p>
-<p><img alt="screenshot" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/screenshot.jpg" /></p>
+<p><img alt="screenshot" src="doc/screenshot.jpg" /></p>
 <p><br></p>
 <p><strong>Contents</strong></p>
 <ul>
@@ -1433,18 +1433,54 @@ body .markdown-body
 <p>All UI-Objects contain the <code>.createHTMLElement(&lt;attributes&gt;)</code> function, to get a returned HTML node with its attributes from the UI Object or new attributes.</p>
 </blockquote>
 <p>You can read more about HTML Form Elements and their attributes at <a href="https://www.w3schools.com/html/html_form_elements.asps">W3CSchools</a></p>
+<h3 id="all-basic-element-attributes">All basic-element-attributes<a class="headerlink" href="#all-basic-element-attributes" title="Permanent link"></a></h3>
+<p>Every element has its basic attributes and event-handlers:</p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
+<div class="highlight"><pre><span class="nx">UI</span><span class="p">...({</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
+    <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
+    <span class="nx">style</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
+    <span class="nx">disabled</span><span class="o">:</span> <span class="s2">&quot;&lt;boolean&gt;&quot;</span>
+<span class="p">})</span>
+</pre></div>
+
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Element&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color: blue;&quot;</span> <span class="na">disabled</span><span class="o">=</span><span class="s">true</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
+<h4 id="generate-hashed-element-id">Generate hashed element Id<a class="headerlink" href="#generate-hashed-element-id" title="Permanent link"></a></h4>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;&lt;generateId&gt;&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Element&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color: blue;&quot;</span> <span class="na">disabled</span><span class="o">=</span><span class="s">true</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
 <p><br></p>
 <h3 id="button">Button<a class="headerlink" href="#button" title="Permanent link"></a></h3>
-<p><img alt="button" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/button.png" /></p>
+<p><img alt="button" src="doc/uielements/button.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UIButton</span><span class="p">({</span>
     <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;&lt;value&gt;&quot;</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span>
 <span class="p">})</span>
+</pre></div>
+
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Button&quot;</span><span class="p">&gt;</span>text<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 
 <p><br></p>
 <h3 id="checkbox">Checkbox<a class="headerlink" href="#checkbox" title="Permanent link"></a></h3>
-<p><img alt="checkbox" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/checkbox.png" /></p>
+<p><img alt="checkbox" src="doc/uielements/checkbox.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UICheckbox</span><span class="p">({</span>
     <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
     <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;&lt;value&gt;&quot;</span><span class="p">,</span>
@@ -1452,20 +1488,38 @@ body .markdown-body
 <span class="p">})</span>
 </pre></div>
 
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Checkbox&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
 <p><br></p>
 <h3 id="dropdownlist">DropdownList<a class="headerlink" href="#dropdownlist" title="Permanent link"></a></h3>
-<p><img alt="dropdown" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/dropdown.png" /></p>
+<p><img alt="dropdown" src="doc/uielements/dropdown.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UIDropdownList</span><span class="p">({</span>
-    <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;&lt;value&gt;&quot;</span><span class="p">,</span>
+    <span class="nx">values</span><span class="o">:</span> <span class="s2">&quot;&lt;array&gt;&quot;</span><span class="p">,</span>
     <span class="nx">size</span><span class="o">:</span> <span class="s2">&quot;&lt;number&gt;&quot;</span><span class="p">,</span>
     <span class="nx">multiple</span><span class="o">:</span> <span class="s2">&quot;&lt;boolean&gt;&quot;</span><span class="p">,</span>
     <span class="nx">selected</span><span class="o">:</span> <span class="s2">&quot;&lt;value&gt;&quot;</span>
 <span class="p">})</span>
 </pre></div>
 
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;DropdownList&quot;</span> <span class="na">values</span><span class="o">=</span><span class="s">&quot;[item-1, item-2, item-3]&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
 <p><br></p>
 <h3 id="label">Label<a class="headerlink" href="#label" title="Permanent link"></a></h3>
-<p><img alt="labeltext" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/labeltext.png" /></p>
+<p><img alt="labeltext" src="doc/uielements/labeltext.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UILabel</span><span class="p">({</span>
     <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
@@ -1474,9 +1528,18 @@ body .markdown-body
 <span class="p">})</span>
 </pre></div>
 
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Label&quot;</span><span class="p">&gt;</span>text<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
 <p><br></p>
 <h3 id="radiobutton">RadioButton<a class="headerlink" href="#radiobutton" title="Permanent link"></a></h3>
-<p><img alt="radiobutton" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/radiobutton.png" /></p>
+<p><img alt="radiobutton" src="doc/uielements/radiobutton.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UIRadioButton</span><span class="p">({</span>
     <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
@@ -1485,15 +1548,26 @@ body .markdown-body
 <span class="p">})</span>
 </pre></div>
 
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;RadioButton&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;radio-group&quot;</span><span class="p">&gt;</span>A<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;RadioButton&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;radio-group&quot;</span><span class="p">&gt;</span>B<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;RadioButton&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;radio-group&quot;</span><span class="p">&gt;</span>C<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
 <p><br></p>
 <h3 id="seperator">Seperator<a class="headerlink" href="#seperator" title="Permanent link"></a></h3>
-<p><img alt="seperator" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/seperator.png" /></p>
+<p><img alt="seperator" src="doc/uielements/seperator.png" /></p>
 <div class="highlight"><pre><span class="nx">UISeperator</span><span class="p">()</span>
 </pre></div>
 
 <p><br></p>
 <h3 id="slider">Slider<a class="headerlink" href="#slider" title="Permanent link"></a></h3>
-<p><img alt="slider" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/slider.png" /></p>
+<p><img alt="slider" src="doc/uielements/slider.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UISlider</span><span class="p">({</span>
     <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;&lt;number&gt;&quot;</span><span class="p">,</span>
     <span class="nx">min</span><span class="o">:</span> <span class="s2">&quot;&lt;number&gt;&quot;</span><span class="p">,</span>
@@ -1502,9 +1576,18 @@ body .markdown-body
 <span class="p">})</span>
 </pre></div>
 
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Slider&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;ui-slider&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">0,</span> <span class="na">max</span><span class="o">=</span><span class="s">100</span> <span class="na">value</span><span class="o">=</span><span class="s">75</span> <span class="na">step</span><span class="o">=</span><span class="s">1</span> <span class="na">inline</span><span class="o">=</span><span class="s">true</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Label Value&quot;</span> <span class="na">bind</span><span class="o">=</span><span class="s">&quot;ui-slider&quot;</span><span class="p">&gt;</span>{value}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
 <p><br></p>
 <h3 id="textarea">TextArea<a class="headerlink" href="#textarea" title="Permanent link"></a></h3>
-<p><img alt="textarea" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/textarea.png" /></p>
+<p><img alt="textarea" src="doc/uielements/textarea.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UITextArea</span><span class="p">({</span>
     <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
     <span class="nx">rows</span><span class="o">:</span> <span class="s2">&quot;&lt;number&gt;&quot;</span><span class="p">,</span>
@@ -1513,9 +1596,18 @@ body .markdown-body
 <span class="p">})</span>
 </pre></div>
 
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;TextArea&quot;</span> <span class="na">rows</span><span class="o">=</span><span class="s">&quot;5&quot;</span> <span class="na">cols</span><span class="o">=</span><span class="s">&quot;30&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Placeholder text&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;resize: none&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
 <p><br></p>
 <h3 id="textinput">TextInput<a class="headerlink" href="#textinput" title="Permanent link"></a></h3>
-<p><img alt="textinput" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/textinput.png" /></p>
+<p><img alt="textinput" src="doc/uielements/textinput.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UITextInput</span><span class="p">({</span>
     <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">,</span>
@@ -1531,6 +1623,12 @@ body .markdown-body
 <span class="p">})</span>
 </pre></div>
 
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;TextInput&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Type in something&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
 <p><br></p>
 <h2 id="group-objects">Group-objects<a class="headerlink" href="#group-objects" title="Permanent link"></a></h2>
 <p>Group-objects can be used to group other elemental or group objects and display them in a container or form-element, like fieldset.</p>
@@ -1539,22 +1637,55 @@ body .markdown-body
 </blockquote>
 <p><br></p>
 <h3 id="group">Group<a class="headerlink" href="#group" title="Permanent link"></a></h3>
-<p><img alt="group" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/group.png" /></p>
+<p><img alt="group" src="doc/uielements/group.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UIGroup</span><span class="p">({</span> <span class="o">&lt;</span><span class="nx">attributes</span><span class="o">&gt;</span> <span class="p">})</span>
+</pre></div>
+
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Group&quot;</span> <span class="na">inline</span><span class="o">=</span><span class="s">true</span><span class="p">&gt;</span>
+     ...
+ <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 
 <p><br></p>
 <h3 id="tab">Tab<a class="headerlink" href="#tab" title="Permanent link"></a></h3>
-<p><img alt="tab" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/tab.png" /></p>
+<p><img alt="tab" src="doc/uielements/tab.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <div class="highlight"><pre><span class="nx">UITab</span><span class="p">({</span> <span class="o">&lt;</span><span class="nx">attributes</span><span class="o">&gt;</span> <span class="p">})</span>
+</pre></div>
+
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Tab&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Tab title&quot;</span><span class="p">&gt;</span>
+    ...          
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 
 <p><br></p>
 <h3 id="form">Form<a class="headerlink" href="#form" title="Permanent link"></a></h3>
-<p><img alt="form" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/uielements/form.png" /></p>
+<p><img alt="form" src="doc/uielements/form.png" /></p>
+<blockquote>
+<p>JavaScript:</p>
+</blockquote>
 <p><div class="highlight"><pre><span class="nx">UIForm</span><span class="p">({</span> <span class="o">&lt;</span><span class="nx">attributes</span><span class="o">&gt;</span> <span class="p">})</span>
 </pre></div>
 The same attributes like in the <code>HTML &lt;form&gt; Tag</code></p>
+<blockquote>
+<p>HTML:</p>
+</blockquote>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;Form&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;get&quot;</span><span class="p">&gt;</span>
+    ...          
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+
 <p>Write a container-DIV node with its element-id and its contents and the HTML-attributes:</p>
 <p><br></p>
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link"></a></h2>
@@ -1574,35 +1705,35 @@ The same attributes like in the <code>HTML &lt;form&gt; Tag</code></p>
 <ul>
 <li><strong>None</strong></li>
 </ul>
-<p><img alt="codeconsole" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/themes/none.png" /></p>
+<p><img alt="codeconsole" src="doc/themes/none.png" /></p>
 <ul>
 <li><strong>SystemUI</strong></li>
 </ul>
-<p><img alt="systemui" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/themes/systemui.png" /></p>
+<p><img alt="systemui" src="doc/themes/systemui.png" /></p>
 <ul>
 <li><strong>SystemUIDark</strong></li>
 </ul>
-<p><img alt="systemuidark" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/themes/systemuidark.png" /></p>
+<p><img alt="systemuidark" src="doc/themes/systemuidark.png" /></p>
 <ul>
 <li><strong>Chromium</strong></li>
 </ul>
-<p><img alt="chromium" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/themes/chromium.png" /></p>
+<p><img alt="chromium" src="doc/themes/chromium.png" /></p>
 <ul>
 <li><strong>Gimp</strong></li>
 </ul>
-<p><img alt="gimp" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/themes/gimp.png" /></p>
+<p><img alt="gimp" src="doc/themes/gimp.png" /></p>
 <ul>
 <li><strong>WindowsClassic</strong></li>
 </ul>
-<p><img alt="windowsclassic" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/themes/windowsclassic.png" /></p>
+<p><img alt="windowsclassic" src="doc/themes/windowsclassic.png" /></p>
 <ul>
 <li><strong>DeepBlue</strong></li>
 </ul>
-<p><img alt="deepblue" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/themes/deepblue.png" /></p>
+<p><img alt="deepblue" src="doc/themes/deepblue.png" /></p>
 <ul>
 <li><strong>Terminal</strong></li>
 </ul>
-<p><img alt="terminal" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/themes/terminal.png" /></p>
+<p><img alt="terminal" src="doc/themes/terminal.png" /></p>
 <ul>
 <li><strong>Custom</strong></li>
 </ul>
@@ -1610,7 +1741,7 @@ The same attributes like in the <code>HTML &lt;form&gt; Tag</code></p>
 <p><br></p>
 <h2 id="uicodeconsolejs-extension">UICodeConsole.js extension<a class="headerlink" href="#uicodeconsolejs-extension" title="Permanent link"></a></h2>
 <p>The extension can be used to export the generated HTML/JS and CSS sourcecode into exported HTML files <strong>to use the generated HTML Forms without the UIFormElements.js library</strong>.</p>
-<p><img alt="codeconsole" src="/home/aeax/Programming/projects/js/UIFormElements.js/UIFormElements.js/doc/codeconsole.jpg" /></p>
+<p><img alt="codeconsole" src="doc/codeconsole.jpg" /></p>
 <h3 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link"></a></h3>
 <p>Just insert the JS-sourcefile into the HTML document:</p>
 <p><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;path/to/ui-code-console.production.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>`
@@ -1667,7 +1798,7 @@ Add the extension into the configuration:</p>
 The related CSS-theme-file can be downloaded as a <code>*.css</code> file.</p>
 <p><br></p>
 <h2 id="buiding-production-files">Buiding production files<a class="headerlink" href="#buiding-production-files" title="Permanent link"></a></h2>
-<p>You can build the minfied production <code>*.js</code> files with the Node.js builder, if you want to compile the modified source files in the <code>development/</code> folder.</p>
+<p>You can build the minified production <code>*.js</code> and <code>*.css</code> files with the Node.js-builder, if you want to compile the modified source files in the <code>development/</code> folder.</p>
 <h3 id="nodejs-linker-and-compressor">Node.js Linker and compressor<a class="headerlink" href="#nodejs-linker-and-compressor" title="Permanent link"></a></h3>
 <p>Use the <code>package.json</code> file in the Node.js program folder <code>development/node-js-builder/</code>. The CommonJS file in the configuration JSON-file uses <code>babel-minify</code>.
 It merges all the JS class and program files together into single files and compresses it into minifed production files.</p>
@@ -1680,11 +1811,8 @@ It merges all the JS class and program files together into single files and comp
 <div class="highlight"><pre><span class="go">npm run build</span>
 </pre></div>
 
-<p>You can also run the build files to merge other <code>*.js</code> files out of the given configuration-files:</p>
-<div class="highlight"><pre><span class="go">node build-production-files.js config/ui-form-elements_build-config.json</span>
-</pre></div>
-
-<div class="highlight"><pre><span class="go">node build-production-files.js config/ui-code-console_build-config.json</span>
+<p>You can also run build files to merge and process other <code>*.*</code> files out of the given configuration-files:</p>
+<div class="highlight"><pre><span class="go">node build-production-files.js config/your-own-build-config.json</span>
 </pre></div>
 
 <p><br></p>
@@ -1707,7 +1835,6 @@ It merges all the JS class and program files together into single files and comp
 <p><br></p>
 <h3 id="third-party-software">Third-party software<a class="headerlink" href="#third-party-software" title="Permanent link"></a></h3>
 <p>The <strong>UICodeConsole.js</strong> extension uses the following third-party software components:</p>
-<blockquote>
 <ul>
 <li>
 <p>code-prettify (Apache licence) - <a class="magiclink magiclink-github magiclink-repository" href="https://github.com/googlearchive/code-prettify" title="GitHub Repository: googlearchive/code-prettify">googlearchive/code-prettify</a></p>
@@ -1718,6 +1845,9 @@ It merges all the JS class and program files together into single files and comp
 <li>
 <p>split-0.1.0 (Custom licence) - <a class="magiclink magiclink-github magiclink-repository" href="https://github.com/nathancahill/split" title="GitHub Repository: nathancahill/split">nathancahill/split</a></p>
 </li>
+</ul>
+<p>The <strong>UIFormElements.js Live Editor</strong> application uses the following third-party software components:</p>
+<ul>
 <li>
 <p>Try It Editor Offline (MIT Licence / W3C ToS) - <a class="magiclink magiclink-github magiclink-repository" href="https://github.com/luce80/Try-It-Editor-Offline" title="GitHub Repository: luce80/Try-It-Editor-Offline">luce80/Try-It-Editor-Offline</a></p>
 </li>
@@ -1725,5 +1855,4 @@ It merges all the JS class and program files together into single files and comp
 <p>CodeMirror (MIT licence) - <a href="https://codemirror.net/">https://codemirror.net/</a></p>
 </li>
 </ul>
-</blockquote>
 <p>The third-party software licences are in the related folders.</p></article></body></html>
