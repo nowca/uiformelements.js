@@ -8,8 +8,6 @@
 
 It is sucessfully tested with Firefox 25 and Chromium 70 on Linux x64.
 
-> Check out the live-editor: https://nowca.github.io/uiformelements.js/development/live-editor/UILiveEditor.html
-
 <br>
 
 ![screenshot](doc/screenshot.jpg)
@@ -37,6 +35,9 @@ It is sucessfully tested with Firefox 25 and Chromium 70 on Linux x64.
     - [Form](#form)
 - [Options](#options)
     - [Themes](#themes)
+- [Live Editor](#live-editor)
+    - [Editor options](#editor-options)
+    - [HTML export](#html-export)
 - [UICodeConsole.js extension](#uicodeconsolejs-extension)
     - [Initialization](#initialization)
     - [Configuration options](#configuration-options)
@@ -554,6 +555,41 @@ UIFormElements.changeTheme("SystemUI");
 - **Custom**
 
 Use the custom template to create own color-themes
+
+<br>
+
+## Live Editor
+
+![live-editor](doc/liveeditor.jpg)
+
+The **HTML Live Edtior** can be used to create forms in a easy way. All results of the form source-code can be viewed as HTML-Document while writing the code.
+
+> Generated HTML source-code is shown as HTML-file, which can be exported as stand-alone HTML-file through the editor. A generated document can be exported with a selected color-theme.
+
+The Live Editor runs as offline HTML-file-application and online on servers. File loading of local HTML-source files is only supported in online-mode. It is tested on Firefox 25 and can be used on older systems.
+
+On the left side are stacked buttons to insert the different form elements as HTML-code-snippets together with its related options for the source-code.
+
+### Editor options
+
+The editor supports different options for code-writing:
+
+- *live reloading of the source-code results*
+- *editor cursor placement*
+- *automatically generated id-attributes for the DOM-elements*
+- *inline positioning of the elements*
+- *automatic binding of labels*
+- *HTML-template and code-examples*
+
+### HTML export
+
+The generated HTML-file can be exported with the export function on left bottom side of the editor.
+
+> **A generated exported form in a HTML/JS-file can be used without the library**.
+
+After the export of the file the UIFormElements.js library-files is not needed anymore in the exported HTML-file.
+**It can run independently as stand-alone HTML-file**.
+All needed HTML/CSS and JS instructions are inserted into the exported file.
 
 <br>
 

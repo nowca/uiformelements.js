@@ -37,6 +37,7 @@
 
 		li {
 			float: left;
+			margin-bottom: 8px;
 		}
 
 		li.seperator {
@@ -80,10 +81,22 @@
 		}
 
 		#textareacontainer > ul > *, #top-bar-title,
-		#iframecontainer > ul > * {
+		#iframecontainer > ul > *,
+		#document-title,
+		#theme {
 			display: inline-block;
 			font-family: Verdana, Arial, monospace !important;
 			font-size: 12px;
+		}
+
+		#document-title,
+		#theme {
+			color: #ffffff;
+		}
+
+		#theme {
+			position: absolute;
+    		right: 0;
 		}
 
 		#textareacontainer > ul,
@@ -109,15 +122,22 @@
 		}
 
 		.bar-element {
-			height: 32px;
+			min-height: 32px;
 		    padding: 0;
 		    color: #ffffff;
-		    position: absolute;
+		}
+
+		.bar-element-top {
+			height: 32px;
 		}
 
 		.bottom-bar {
+			position: absolute;
 			height: 58px;
     		padding: 14px 0 0 10px;
+    		overflow-y: scroll;
+    		bottom: 0;
+    		width: 100%;
 		}
 
 		.tool-bar {
@@ -126,7 +146,7 @@
 			display: inline-block;
 		    width: 140px !important;
 		    position: absolute !important;
-		    height: calc(100% - 90px);
+		    height: calc(100% - 32px);
 		    padding: 14px 10px;
 		    overflow-y: auto;
     		overflow-x: hidden;
@@ -154,9 +174,9 @@
 		#container {
 			margin: 0;
 		    position: absolute;
-		    height: 100%;
+		    height: calc(100% - 58px);
 		    width: 100%;
-		    bottom: 0px;
+		    top: 0px;
 		    left: 0;
 		    right: 0;
 		}
@@ -216,7 +236,7 @@
 		}
 
 		#iframe-subcontainer {
-			height: calc(100% - 90px);
+			height: calc(100% - 64px);
 			border: 1px solid #666;
 		}
 
@@ -232,7 +252,7 @@
 			display: inline-block;
 			height: 32px;
     		background-color: #666;
-    		width: 360px;
+    		width: 100%;
 		    font-weight: bold;
 		    line-height: 32px;
 		    padding-left: 32px;
@@ -269,7 +289,7 @@
 			padding: 8px;
 			width: calc(100% - 140px);
 			box-shadow: 0px 0px 10px 4px #cccccc inset;
-			height: calc(100% - 90px);
+			height: calc(100% - 32px);
 		    border: 1px solid #666;
 		}
 
@@ -283,6 +303,10 @@
 
 		.CodeMirror-hscrollbar {
 			left: 40px !important;
+		}
+
+		.CodeMirror-vscrollbar {
+			pointer-events: unset !important;
 		}
 
 		.right {
@@ -988,12 +1012,11 @@ body.Custom {
 <div id="container">
 	<div id="textareacontainer">
 		<div id="top-bar-title">UIFormElements.js Live Editor</div>
-		<ul class="bar-element right">
-			<li><button id="undo" class="right" style="right: 86px;" onclick="UILiveEditor.undo()">Undo</button></li>
-			<li class="seperator"></li>
+		<ul class="bar-element bar-element-top right">
+			<li><button id="undo" class="right" style="right: 56px;" onclick="UILiveEditor.undo()">Undo</button></li>
 			<li><button id="run" class="right" style="" onclick="submitTryit(1)">Run &raquo;</button></li>
 		</ul>
-		<ul class="bar-element tool-bar">
+		<ul class="bar-element bar-element-top tool-bar">
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.group, 31, true)'>Group</button></li>
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.tab, 35, true)'>Tab</button></li>
 			<li><button onclick='UILiveEditor.insertToCodeMirror(UILiveEditor.uiElementTemplates.form, 42, true)'>Form</button></li>
@@ -1081,35 +1104,31 @@ body.Custom {
 </body>
 </html>
 		</textarea>
-		<ul class="bar-element bottom-bar">
-			<li><button id="load-html-file" onclick="loadFile()">Load HTML-File</button></li>
-			<li class="seperator"></li>
-			<li><input id="filename" value="No file loaded." disabled></input></li>
-			<li class="seperator"></li>
-			<li><button id="load-html-template" style="margin-right: 10px;" onclick="UILiveEditor.loadEmptyHTMLFile()">Load empty HTML-Template</button></li>
-			<li><button  id="load-html-example" style="margin-right: 10px;" onclick="UILiveEditor.loadFormExamples()">Load example</button></li>
-			<li><button  id="clear-all" onclick="UILiveEditor.clearAll()">Clear all</button></li>
-		</ul>
 	</div>
 	<div id="dragbar"><div></div></div>
 	<div id="iframecontainer">
-		<ul class="bar-element">
-			<li id="document-title"></li>
-			<li id="theme">Theme: <select id="theme-selection" class="DropdownList" style="display: inline-block; height: 32px;" onchange="UILiveEditor.setTheme(this.value)"><option value="None">None</option><option value="SystemUI" selected>System-UI</option><option value="SystemUIDark">System-UI-Dark</option><option value="Chromium">Chromium</option><option value="Gimp">Gimp</option><option value="WindowsClassic">Windows-Classic</option><option value="DeepBlue">Deep-Blue</option><option value="Terminal">Terminal</option><option value="Custom">Custom</option></select></li>
-			<li class="seperator"></li>
+		<ul class="bar-element bar-element-top">
 			<li><button id="zoom-minus" onclick="UILiveEditor.setSize(-0.1)" style="width: 32px; margin-left: 10px;">-</button></li>
 			<li><button id="zoom-plus" onclick="UILiveEditor.setSize(0.1)" style="width: 32px; margin-left: 10px;">+</button></li>
 			<li><button id="reset" onclick="UILiveEditor.setSize(0)" style="margin-left: 10px;">Reset</button></li>
 			<li class="right" style="position: absolute; right: 10px;"><button id="about" onclick="UILiveEditor.aboutDialog()">About</button></li>
 		</ul>
+		<div id="document-title"></div><div id="theme">Theme: <select id="theme-selection" class="DropdownList" style="display: inline-block; height: 32px;" onchange="UILiveEditor.setTheme(this.value)"><option value="None">None</option><option value="SystemUI" selected>System-UI</option><option value="SystemUIDark">System-UI-Dark</option><option value="Chromium">Chromium</option><option value="Gimp">Gimp</option><option value="WindowsClassic">Windows-Classic</option><option value="DeepBlue">Deep-Blue</option><option value="Terminal">Terminal</option><option value="Custom">Custom</option></select></div>
 		<div id="iframe-subcontainer">
 			<iframe id="iframeResult"></iframe>
 		</div>
-		<ul class="bar-element bottom-bar">
-			<li><button onclick="UILiveEditor.exportHTMLFile()">Export HTML-File</button></li>
-			
-		</ul>
 	</div>
+</div>
+<div class="bottom-bar">
+	<ul style="width: calc(100% - 196px)" class="bar-element">
+		<li><button style="margin-right: 10px;" id="load-html-file" onclick="loadFile()">Load HTML-File</button></li>
+		<li><input style="margin-right: 10px;" id="filename" value="No file loaded." disabled></input></li>
+		<li><button  id="load-html-example" style="margin-right: 10px;" onclick="UILiveEditor.loadFormExamples()">Load example</button></li>
+		<li><button id="load-html-template" style="margin-right: 10px;" onclick="UILiveEditor.loadEmptyHTMLFile()">Load empty HTML-Template</button></li>
+		<!--li><button  id="clear-all" style="margin-right: 10px;" onclick="UILiveEditor.clearAll()">Clear all</button></li-->
+	</ul>
+	<div style="width: 196px; position: absolute; right: 0 !important; margin-right: 16px; top: 0; height: 58px;"><button style="right: 0; top: 16px;
+    position: absolute;" id="export-file" onclick="UILiveEditor.exportHTMLFile()">Export HTML-File</button></div>
 </div>
 <script>
 	function $Id(id)
@@ -1256,7 +1275,7 @@ body.Custom {
 		},
 		init: function()
 		{
-			UILiveEditor.setMenuItemDisplay();
+			//UILiveEditor.setMenuItemDisplay();
 
 			$Id("checkbox-live").addEventListener("click", function(value)
 			{
@@ -1556,13 +1575,6 @@ body.Custom {
 				text = window.editor.getDoc().getValue("\n");
 			}
 
-			/*
-			input[type=checkbox], input[type=radio] {
-			width: 3.1rem; 
-			height: 3.1rem; 
-		}
-		*/
-
 			text = text.replace(/.*\n.*body \*[\s\S\{]*?\}\n/m, "");
 			text = value != 0 ? text.replace(/<\/style>/g, "\n        body * {\n            font-size: " + UILiveEditor.document.zoomLevel.toFixed(1) + "rem;\n        }\n    </style>") : text;
 			window.editor.getDoc().setValue(text);
@@ -1800,7 +1812,7 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 					balancer.nextElementSibling.style[axe2] = "calc(" + (100 - perc) + "% - " + (balancer[axe1] / 2) + "px)";
 				}
 
-				UILiveEditor.setMenuItemDisplay();
+				//UILiveEditor.setMenuItemDisplay();
 			}
 		}
 		function dragend() {
