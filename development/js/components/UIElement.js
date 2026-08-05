@@ -30,6 +30,20 @@ function UIElement(options)
 
     	options = options || {};
 
+        options.disabled = options.disabled != undefined ? options.disabled.toLowerCase() : undefined;
+        options.checked = options.checked != undefined ? options.checked.toLowerCase() : undefined;
+        options.inline = options.inline != undefined ? options.inline.toLowerCase() : undefined;
+
+        if (options.disabled == "")
+        {
+            options.disabled = "true";
+        }
+
+        if (options.checked == "")
+        {
+            options.checked = "true";
+        }
+
         instance.defaultAttributes = new UIElementHTMLAttributes();
         instance.defaultAttributes._id = options.id || undefined;
         instance.defaultAttributes._class = options.class | undefined;
@@ -184,7 +198,11 @@ UIElement.setHTMLNodeAttributes = function(htmlNode, attributeValues)
             )
         )
         {
-            if ((attributeValues.uiElementType == "UICheckbox" && name == "onchange") == false)
+            if
+            (
+                (attributeValues.uiElementType == "UICheckbox" && name == "onchange") == false
+                && (attributeValues.uiElementType == "UITab" && name == "title") == false
+            )
             {
                 htmlNode.setAttribute(name, attributeValues[attributes[i][0]]); 
             }

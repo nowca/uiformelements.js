@@ -269,7 +269,7 @@ fieldset * {\
 \
 .Seperator {\
     display: block;\
-    margin: 4px 0 5px 0;\
+    margin: 8px 0 8px 0;\
 }\
 \
 input,\

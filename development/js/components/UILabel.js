@@ -51,14 +51,14 @@ function UILabel(options)
 		    			)
 		    			{
 		    				var scriptTag = document.createElement("script");
-   				  			scriptTag.textContent = "function setLabel(labelId, bindNodeId, text) { document.getElementById(labelId).textContent = text.replace('{value}', document.getElementById(bindNodeId).value); }";
+   				  			scriptTag.textContent = "function setLabel(labelId, bindNodeId) { document.getElementById(labelId).textContent = '{value}'.replace('{value}', document.getElementById(bindNodeId).value); }";
 		    				document.body.appendChild(scriptTag);
 		    				UIFormElements._internals.state.injection.labelBindScript = true;
 		    			}
 
 		    			if (UIFormElements.config.export.injectScripts == true)
 		    			{
-		    				bindNode.setAttribute("oninput", "setLabel('" + attributeValues._id + "', '" + bindNode.id + "', '" + attributeValues._text + "')");
+		    				bindNode.setAttribute("oninput", "setLabel('" + attributeValues._id + "', '" + bindNode.id + "')");
 		    			}
 		    			else
 		    			{

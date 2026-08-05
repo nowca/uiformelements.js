@@ -10,8 +10,8 @@
 var UIFormElements = {
 	VERSION: "0.8b",
 	config: {
-		consoleBanner: true,
-		consoleMessages: true,
+		consoleBanner: false,
+		consoleMessages: false,
 		userselect: true,
 		alwaysInline: false,
 		generateIds: false,
@@ -269,7 +269,7 @@ fieldset * {\
 \
 .Seperator {\
     display: block;\
-    margin: 4px 0 5px 0;\
+    margin: 8px 0 8px 0;\
 }\
 \
 input,\
@@ -627,6 +627,20 @@ function UIElement(options)
 
     	options = options || {};
 
+        options.disabled = options.disabled != undefined ? options.disabled.toLowerCase() : undefined;
+        options.checked = options.checked != undefined ? options.checked.toLowerCase() : undefined;
+        options.inline = options.inline != undefined ? options.inline.toLowerCase() : undefined;
+
+        if (options.disabled == "")
+        {
+            options.disabled = "true";
+        }
+
+        if (options.checked == "")
+        {
+            options.checked = "true";
+        }
+
         instance.defaultAttributes = new UIElementHTMLAttributes();
         instance.defaultAttributes._id = options.id || undefined;
         instance.defaultAttributes._class = options.class | undefined;
@@ -781,7 +795,11 @@ UIElement.setHTMLNodeAttributes = function(htmlNode, attributeValues)
             )
         )
         {
-            if ((attributeValues.uiElementType == "UICheckbox" && name == "onchange") == false)
+            if
+            (
+                (attributeValues.uiElementType == "UICheckbox" && name == "onchange") == false
+                && (attributeValues.uiElementType == "UITab" && name == "title") == false
+            )
             {
                 htmlNode.setAttribute(name, attributeValues[attributes[i][0]]); 
             }
@@ -883,14 +901,14 @@ function UILabel(options)
 		    			)
 		    			{
 		    				var scriptTag = document.createElement("script");
-   				  			scriptTag.textContent = "function setLabel(labelId, bindNodeId, text) { document.getElementById(labelId).textContent = text.replace('{value}', document.getElementById(bindNodeId).value); }";
+   				  			scriptTag.textContent = "function setLabel(labelId, bindNodeId) { document.getElementById(labelId).textContent = '{value}'.replace('{value}', document.getElementById(bindNodeId).value); }";
 		    				document.body.appendChild(scriptTag);
 		    				UIFormElements._internals.state.injection.labelBindScript = true;
 		    			}
 
 		    			if (UIFormElements.config.export.injectScripts == true)
 		    			{
-		    				bindNode.setAttribute("oninput", "setLabel('" + attributeValues._id + "', '" + bindNode.id + "', '" + attributeValues._text + "')");
+		    				bindNode.setAttribute("oninput", "setLabel('" + attributeValues._id + "', '" + bindNode.id + "')");
 		    			}
 		    			else
 		    			{

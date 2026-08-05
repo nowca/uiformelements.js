@@ -1154,7 +1154,8 @@ body.Custom {
 		document: {
 			title: "<no document title>",
 			zoomLevel: 1,
-			cursorOffset: 0
+			cursorOffset: 0,
+			elementCount: 1
 		},
 		uiElementTemplates: {
 			group: '<div class="Group" inline=true></div>',
@@ -1166,8 +1167,8 @@ body.Custom {
 			label: '<div class="Label"></div>',
 			radiobutton: '<div class="RadioButton" name="radio-group"></div>',
 			seperator: '<div class="Seperator"></div>',
-			slider: '<div class="Slider" id="ui-slider" min=0, max=100 value=75 step=1 inline=true></div>',
-			sliderLabel: '<div class="Label Value" bind="ui-slider">{value}</div>',
+			slider: '<div class="Slider" id="ui-slider-0" min=0, max=100 value=75 step=1 inline=true></div>',
+			sliderLabel: '<div class="Label Value" bind="ui-slider-0">{value}</div>',
 			textarea: '<div class="TextArea" rows="5" cols="30" placeholder="Placeholder text" style="resize: none"></div>',
 			textinput: '<div class="TextInput" placeholder="Type in something"></div>'
 		},
@@ -1408,6 +1409,12 @@ body.Custom {
 			if (isSliderClass == false && UILiveEditor.config.addIdAttribute == true)
 			{
 				text = text.replace("class", 'id="{generateId}" class');
+			}
+			else
+			{
+				UILiveEditor.document.elementCount++;
+				UILiveEditor.uiElementTemplates.slider = '<div class="Slider" id="ui-slider-' + UILiveEditor.document.elementCount + '" min=0, max=100 value=75 step=1 inline=true></div>';
+				UILiveEditor.uiElementTemplates.sliderLabel = '<div class="Label Value" bind="ui-slider-' + UILiveEditor.document.elementCount + '">{value}</div>';
 			}
 
 			var isGroupClass = (text.indexOf("Group") != -1);
