@@ -1,12 +1,15 @@
 # UIFormElements.js
 
-> **The version 0.8b is still in its beta state. Some attributes are not implemented. The library can be used for basic applications or educational tasks, such as prototyping, testing, learning, research or quick development.** 
-
 ![aloha](doc/noyes.png)
 
 **This is a legacy-compatible HTML Form toolkit for prototyping or web-applications with simple form-elements.**
 
 It is sucessfully tested with Firefox 25 and Chromium 70 on Linux x64.
+
+> **The library can be used for basic applications or educational tasks, such as prototyping, testing, learning, research or quick development. The version 0.8b is still in its beta state. Some attributes are not implemented.** 
+
+Work online with the Live-Editor:
+https://nowca.github.io/uiformelements.js/development/live-editor/UILiveEditor.html
 
 <br>
 
