@@ -78,12 +78,15 @@ var UIFormElements = {
 		var themes = UIFormElements._internals.getObjectEntries(UIFormElements.config.themes);
         var currentTheme = UIFormElements.config.theme.replace("-", "");
 
-        for (var i = 0; i < themes.length; i++)
+        if (document.body != undefined && document.body.className != undefined)
         {
-        	document.body.className = document.body.className.replace(currentTheme, "");
-        }
+	        for (var i = 0; i < themes.length; i++)
+	        {
+	        	document.body.className = document.body.className.replace(currentTheme, "");
+	        }
 
-        document.body.classList.add(value);
+	        document.body.classList.add(value);
+	    }
         UIFormElements.config.theme = value;
     },
 	createHTMLContentFrom: function(uiElementId)

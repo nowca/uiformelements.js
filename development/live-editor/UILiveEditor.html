@@ -46,6 +46,7 @@
 		}
 
 		button {
+			font-family: Verdana, Arial, monospace !important;
 			margin: 1px 0 1px 0;
 			height: 30px;
 			color: #474C58;
@@ -63,21 +64,29 @@
 		}
 
 		.bar-element button {
-			height: 24px;
-			margin-top: 4px;
+			height: 32px;
+			margin-top: 0;
 		}
 
 		button:enabled {
-		    background-color: #E0E0E2;
-		    border: 1px solid #E0E0E2;
+		    background-color: #3C3C3C;
+		    color: #DDDDDD;
+		    border: 1px solid #3C3C3C;
+		}
+		button:disabled {
+		    background-color: #3C3C3C;
+		    color: #666666;
+		    border: 1px solid #2B2B2B;
 		}
 
 		button:hover:enabled {
-		    background-color: #D4D4D6 !important;
+		    background-color: #5E5E5E !important;
+		    color: #FFFFFF;
+		    border: 1px solid #5E5E5E;
 		}
 
 		button:active:enabled {
-		    background-color: #E0E8ED !important;
+		    background-color: #6F6F6F !important;
 		}
 
 		#textareacontainer > ul > *, #top-bar-title,
@@ -303,6 +312,7 @@
 
 		.CodeMirror-hscrollbar {
 			left: 40px !important;
+			pointer-events: unset !important;
 		}
 
 		.CodeMirror-vscrollbar {
