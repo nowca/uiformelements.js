@@ -1740,11 +1740,14 @@ Live Editor v" +  UILiveEditor.VERSION + " based on Try It Editor Offline by luc
 			ifrw.document.body.contentEditable = false;
 		}
 
-		var themeSelector = $Id("theme-selection");
-		if (themeSelector != undefined)
+		setTimeout(function()
 		{
-			UILiveEditor.setTheme(themeSelector.value);
-		}
+			var themeSelector = $Id("theme-selection");
+			if (themeSelector != undefined)
+			{
+				UILiveEditor.setTheme(themeSelector.value);
+			}
+		}, 100);
 
 		UILiveEditor.setDocumentTitle();
 	}
